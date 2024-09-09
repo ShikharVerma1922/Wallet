@@ -25,6 +25,10 @@ const connection = {
   port: process.env.DB_PORT,
 };
 
+app.get("/", (req, res) => {
+  res.send("Welcome to the Wallet App API");
+});
+
 app.get("/get_balance", async (req, res) => {
   const { account } = req.query;
   const db = new pg.Client(connection);
