@@ -14,7 +14,7 @@ function Balance() {
       });
 
       const response = await fetch(
-        `http://localhost:3000/get_balance?${params.toString()}`
+        `https://wallet-app-u6wd.onrender.com/get_balance?${params.toString()}`
       );
       const data = await response.json();
       setTotalIncome(data.totalIncome);

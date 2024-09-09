@@ -45,8 +45,8 @@ const RecordDetail = (props) => {
       axios
         .post(
           props.new
-            ? "http://localhost:3000/insert_record"
-            : "http://localhost:3000/update",
+            ? "https://wallet-app-u6wd.onrender.com/insert_record"
+            : "https://wallet-app-u6wd.onrender.com/update",
           {
             record: record,
           }
@@ -78,7 +78,7 @@ const RecordDetail = (props) => {
   const handleDelete = (id) => {
     if (confirm("Confirm to permanently delete")) {
       axios
-        .post("http://localhost:3000/delete", {
+        .post("hhttps://wallet-app-u6wd.onrender.com/delete", {
           id: id,
         })
         .then((res) => {});

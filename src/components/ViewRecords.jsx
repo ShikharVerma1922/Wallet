@@ -28,7 +28,7 @@ const ViewRecords = () => {
         ...(category && { category }),
       });
       const response = await fetch(
-        `http://localhost:3000/view_records?${params.toString()}`
+        `https://wallet-app-u6wd.onrender.com/view_records?${params.toString()}`
       );
       const jsonData = await response.json();
       setRecords(jsonData.rows);
@@ -42,7 +42,9 @@ const ViewRecords = () => {
   // navigate to /update_record with a specific id
   const handleUpdate = (id) => {
     axios
-      .post("http://localhost:3000/get_single_record", { id: id })
+      .post("https://wallet-app-u6wd.onrender.com/get_single_record", {
+        id: id,
+      })
       .then((res) => {
         //   console.log(res.data);
         const date = new Date(res.data.transac_date);

@@ -17,7 +17,7 @@ const LastFiveRecords = () => {
       });
 
       const response = await fetch(
-        `http://localhost:3000/filter-record?${params.toString()}`
+        `https://wallet-app-u6wd.onrender.com/filter-record?${params.toString()}`
       );
       const result = await response.json();
       setData(result);
@@ -34,7 +34,7 @@ const LastFiveRecords = () => {
   // navigate to /update_record with a specific id
   const handleUpdate = (id) => {
     axios
-      .post("http://localhost:3000/get_single_record", { id: id })
+      .post("https://wallet-app-u6wd.onrender.com/get_single_record", { id: id })
       .then((res) => {
         //   console.log(res.data);
         const date = new Date(res.data.transac_date);

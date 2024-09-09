@@ -28,13 +28,13 @@ const FilterRecords = () => {
       });
 
       const response = await fetch(
-        `http://localhost:3000/filter-record?${params.toString()}`
+        `https://wallet-app-u6wd.onrender.com/filter-record?${params.toString()}`
       );
       const result = await response.json();
       setData(result);
 
       const response2 = await fetch(
-        `http://localhost:3000/filter-balance?${params.toString()}`
+        `https://wallet-app-u6wd.onrender.com/filter-balance?${params.toString()}`
       );
       const result2 = await response2.json();
       setTotalIncome(result2.totalIncome);
@@ -56,7 +56,9 @@ const FilterRecords = () => {
 
   const handleUpdate = (id) => {
     axios
-      .post("http://localhost:3000/get_single_record", { id: id })
+      .post("https://wallet-app-u6wd.onrender.com/get_single_record", {
+        id: id,
+      })
       .then((res) => {
         //   console.log(res.data);
         const date = new Date(res.data.transac_date);
