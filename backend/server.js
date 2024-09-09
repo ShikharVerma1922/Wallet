@@ -20,11 +20,7 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "client/build")));
 
-const corsOptions = {
-  origin: "https://wallet-pb1u.onrender.com",
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
+const corsOptions = {};
 
 app.use(cors(corsOptions));
 
