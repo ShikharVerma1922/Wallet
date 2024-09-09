@@ -47,7 +47,7 @@ const ViewRecords = () => {
   const handleUpdate = (id) => {
     axios
       .post("https://wallet-app-u6wd.onrender.com/get_single_record", {
-        id: id,
+        id,
       })
       .then((res) => {
         //   console.log(res.data);

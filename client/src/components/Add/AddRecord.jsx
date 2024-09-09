@@ -78,7 +78,7 @@ const RecordDetail = (props) => {
   const handleDelete = (id) => {
     if (confirm("Confirm to permanently delete")) {
       axios
-        .delete("hhttps://wallet-app-u6wd.onrender.com/delete", {
+        .post("hhttps://wallet-app-u6wd.onrender.com/delete", {
           id: id,
         })
         .then((res) => {});

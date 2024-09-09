@@ -106,7 +106,7 @@ app.post("/insert_record", async (req, res) => {
   }
 });
 
-app.delete("/delete", async (req, res) => {
+app.post("/delete", async (req, res) => {
   const id = req.body.id;
   try {
     await pool.query("DELETE FROM records WHERE ID= $1", [id]);
