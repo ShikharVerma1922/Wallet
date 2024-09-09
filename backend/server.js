@@ -3,8 +3,10 @@ import cors from "cors";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
-import { Pool } from "pg";
+import pkg from "pg";
 import dotenv from "dotenv";
+
+const { Pool } = pkg;
 
 dotenv.config();
 
