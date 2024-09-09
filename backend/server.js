@@ -117,10 +117,10 @@ app.delete("/delete", async (req, res) => {
   }
 });
 
-app.get("/get_single_record", async (req, res) => {
+app.post("/get_single_record", async (req, res) => {
   const id = req.body.id;
   try {
-    const result = await pool.query("SELECT * FROM records WHERE id= $1", [id]);
+    const result = await pool.query("SELECT * FROM records WHERE id=$1", [id]);
     res.json(result.rows[0]);
   } catch (err) {
     console.error("error", err.stack);

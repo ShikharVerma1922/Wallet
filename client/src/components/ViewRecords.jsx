@@ -59,8 +59,9 @@ const ViewRecords = () => {
           ...res.data,
           transac_date: adjustedDate.toLocaleDateString("en-CA").split("T")[0],
         };
+
         navigate("/update_record", { state: correctedData, update: true });
-        //   console.log("hi");
+        console.log("hi");
       });
   };
 
