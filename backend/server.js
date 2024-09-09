@@ -20,9 +20,13 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "client/build")));
 
-const corsOptions = {};
+const corsOptions = {
+  origin: "https://wallet-pb1u.onrender.com",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 const pool = new Pool({
   user: process.env.DB_USER,
