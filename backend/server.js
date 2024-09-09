@@ -26,7 +26,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -109,7 +109,7 @@ app.post("/insert_record", async (req, res) => {
 app.post("/delete", async (req, res) => {
   const id = req.body.id;
   try {
-    await pool.query("DELETE FROM records WHERE ID= $1", [id]);
+    await pool.query("DELETE FROM records WHERE id= $1", [id]);
     res.status(200).send("Record deleted successfully");
   } catch (err) {
     console.log(err);
