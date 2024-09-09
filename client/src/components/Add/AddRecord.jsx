@@ -84,7 +84,7 @@ const RecordDetail = (props) => {
           id: id,
         })
         .then((res) => {});
-      history.back();
+      naviagate("/", { state: true });
     } else {
     }
   };
