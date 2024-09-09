@@ -76,7 +76,17 @@ const LastFiveRecords = () => {
       <h2>Last records overview</h2>
       <p className="text-secondary">LAST 30 DAYS</p>
       {isLoading ? (
-        <p>Loading...</p>
+        <p
+          style={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+            color: "lightgray",
+          }}
+        >
+          Loading...
+        </p>
       ) : data.length ? (
         <ul className="list-unstyled">
           {data.slice(0, 5).map((i, index) => {

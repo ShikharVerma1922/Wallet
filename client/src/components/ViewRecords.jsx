@@ -200,7 +200,17 @@ const ViewRecords = () => {
       </div>
       <div style={{ margin: "230px 10px 0px 10px" }}>
         {isLoading ? (
-          <p>Loading...</p>
+          <p
+            style={{
+              position: "relative",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              color: "lightgray",
+            }}
+          >
+            Loading...
+          </p>
         ) : records.length ? (
           <>
             <ul className="list-unstyled">

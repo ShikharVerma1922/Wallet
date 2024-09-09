@@ -176,7 +176,17 @@ const FilterRecords = () => {
         </div>
       </form>
       {isLoading ? (
-        <p>Loading...</p>
+        <p
+          style={{
+            position: "relative",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%,-50%)",
+            color: "lightgray",
+          }}
+        >
+          Loading...
+        </p>
       ) : data.length ? (
         <div>
           <div

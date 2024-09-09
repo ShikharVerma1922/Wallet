@@ -1,6 +1,5 @@
 import express from "express";
 import cors from "cors";
-import pkg from "pg";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -13,7 +12,6 @@ dotenv.config();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const { Pool } = pkg;
 const app = express();
 const port = process.env.PORT || 3000;
 
