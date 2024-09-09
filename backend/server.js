@@ -26,7 +26,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 const pool = new Pool({
   user: process.env.DB_USER,
@@ -128,7 +128,7 @@ app.post("/get_single_record", async (req, res) => {
   }
 });
 
-app.put("/update", async (req, res) => {
+app.post("/update", async (req, res) => {
   const details = req.body.record;
   try {
     await pool.query(
