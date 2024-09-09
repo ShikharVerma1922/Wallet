@@ -1,8 +1,15 @@
 import express from "express";
-import cors from "cors";
-import pkg from "pg";
+import path from "path";
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+import { Pool } from "pg";
 import dotenv from "dotenv";
+
 dotenv.config();
+
+// Recreate __dirname for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const { Pool } = pkg;
 const app = express();
