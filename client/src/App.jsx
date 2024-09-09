@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home.jsx";
 import Layout from "./components/Layout/Layout.jsx";
 import ViewRecords from "./components/ViewRecords.jsx";
@@ -9,7 +9,7 @@ import FilterRecodrs from "./components/FilterRecords.jsx";
 function App() {
   return (
     <div>
-      <BrowserRouter>
+      <HashRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
@@ -22,7 +22,7 @@ function App() {
             <Route path="filter-records" element={<FilterRecodrs />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </div>
   );
 }
