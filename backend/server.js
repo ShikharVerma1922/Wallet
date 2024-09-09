@@ -106,7 +106,7 @@ app.post("/insert_record", async (req, res) => {
   }
 });
 
-app.post("/delete", async (req, res) => {
+app.delete("/delete", async (req, res) => {
   const id = req.body.id;
   try {
     await pool.query("DELETE FROM records WHERE ID= $1", [id]);
@@ -117,7 +117,7 @@ app.post("/delete", async (req, res) => {
   }
 });
 
-app.post("/get_single_record", async (req, res) => {
+app.get("/get_single_record", async (req, res) => {
   const id = req.body.id;
   try {
     const result = await pool.query("SELECT * FROM records WHERE id= $1", [id]);
@@ -128,7 +128,7 @@ app.post("/get_single_record", async (req, res) => {
   }
 });
 
-app.post("/update", async (req, res) => {
+app.put("/update", async (req, res) => {
   const details = req.body.record;
   try {
     await pool.query(

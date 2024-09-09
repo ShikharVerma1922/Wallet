@@ -51,6 +51,8 @@ const LastFiveRecords = () => {
           ...res.data,
           transac_date: adjustedDate.toLocaleDateString("en-CA").split("T")[0],
         };
+        console.log("navigated to update_record");
+        
         navigate("/update_record", { state: correctedData, update: true });
         //   console.log("hi");
       });
