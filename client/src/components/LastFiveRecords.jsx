@@ -62,9 +62,9 @@ const LastFiveRecords = () => {
 
   const monthDateFormat = (date) => {
     var newDate = new Date(date);
-    var mm = String(newDate.getMonth() + 1).padStart(2, "0");
+    var mm = String(newDate.getMonth()).padStart(2, "0");
     var dd = String(newDate.getDate());
-    var month = months[parseInt(mm, 10) + 1];
+    var month = months[parseInt(mm, 10)];
     return month.substring(0, 3) + " " + dd;
   };
 
