@@ -8,8 +8,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+
 const corsOptions = {
-  origin: "https://wallet-pb1u.onrender.com", // Allow this origin
+  origin: "https://wallet-pb1u.onrender.com", // Allow requests from this origin
+  methods: ["GET", "POST", "PUT", "DELETE"], // Specify allowed methods
+  allowedHeaders: ["Content-Type", "Authorization"], // Specify allowed headers
 };
 
 app.use(cors(corsOptions));
