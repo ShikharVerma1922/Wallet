@@ -7,10 +7,12 @@ import "bootstrap/dist/css/bootstrap.css";
 const LastFiveRecords = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   // fetch data of last 30 days
   const fetchFilteredData = async () => {
     try {
+      setIsLoading(true);
       const params = new URLSearchParams({
         ...(oneMonthAgoDate && { oneMonthAgoDate }),
         ...(currentDate && { currentDate }),
@@ -23,6 +25,8 @@ const LastFiveRecords = () => {
       setData(result);
     } catch (error) {
       console.error("Error fetching filtered data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -71,7 +75,9 @@ const LastFiveRecords = () => {
     >
       <h2>Last records overview</h2>
       <p className="text-secondary">LAST 30 DAYS</p>
-      {data.length ? (
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : data.length ? (
         <ul className="list-unstyled">
           {data.slice(0, 5).map((i, index) => {
             const date = new Date(i.transac_date);
