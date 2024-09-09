@@ -73,18 +73,21 @@ function Balance() {
             Cash
           </button>
         </div>
-
-        <span
-          onClick={(e) => {
-            setAccount("select all");
-            setActiveButton(3);
-          }}
-          style={{ cursor: "pointer", color: "blue" }}
-        >
-          Select all
-        </span>
+        {activeButton !== 3 ? (
+          <span
+            onClick={(e) => {
+              setAccount("select all");
+              setActiveButton(3);
+            }}
+            style={{ cursor: "pointer", color: "blue" }}
+          >
+            Select all
+          </span>
+        ) : (
+          <span></span>
+        )}
       </div>
-      <span style={{ fontWeight: "bold" }}>
+      <span style={{ fontWeight: "bold", marginTop: "4px" }}>
         Net Balance:{" "}
         <span
           style={
