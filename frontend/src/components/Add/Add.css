@@ -1,0 +1,8 @@
+.container {
+  margin-top: 7vh;
+  background-color: #333333;
+  color: white;
+  max-width: 500px;
+  height: 93vh;
+  padding: 30px;
+}
