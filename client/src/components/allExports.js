@@ -8,6 +8,8 @@ export let categoryList = [
   "Entertainment",
   "Investment",
   "Rent",
+  "Wage",
+  "Gifts",
 ];
 
 var todaysDate = new Date();
