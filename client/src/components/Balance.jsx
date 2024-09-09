@@ -44,7 +44,7 @@ function Balance() {
       }}
     >
       <h1>List of accounts</h1>
-      <div className="d-flex flex-column align-items-center">
+      <div className="d-flex flex-column align-items-center mb-1">
         <div className="d-flex justify-content-around">
           <button
             className={`btn ${
@@ -87,7 +87,7 @@ function Balance() {
           <span></span>
         )}
       </div>
-      <span style={{ fontWeight: "bold", marginTop: "4px" }}>
+      <span style={{ fontWeight: "bold" }}>
         Net Balance:{" "}
         <span
           style={
