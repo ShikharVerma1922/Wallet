@@ -8,7 +8,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(cors());
+const corsOptions = {
+  origin: "https://wallet-pb1u.onrender.com", // Allow this origin
+};
+
+app.use(cors(corsOptions));
 
 const connection = {
   user: process.env.DB_USER,
