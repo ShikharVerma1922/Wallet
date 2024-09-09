@@ -140,14 +140,14 @@ const ViewRecords = () => {
         <div className="d-flex justify-content-center">
           <div className="btn-group">
             <button onClick={goToPreviousMonth} className="btn btn-secondary">
-              <i class="bi bi-caret-left-fill"></i>
+              <i className="bi bi-caret-left-fill"></i>
             </button>
             <span className="btn btn-light fw-bold" style={{ width: "150px" }}>
               {getMonthName(currentDate).substring(0, 3)}{" "}
               {currentDate.getFullYear()}
             </span>
             <button onClick={goToNextMonth} className="btn btn-secondary">
-              <i class="bi bi-caret-right-fill"></i>
+              <i className="bi bi-caret-right-fill"></i>
             </button>
           </div>
         </div>
@@ -207,10 +207,14 @@ const ViewRecords = () => {
               top: "50%",
               left: "50%",
               transform: "translate(-50%,-50%)",
-              color: "lightgray",
+              color: "grey",
             }}
           >
-            Loading...
+            <span className="spinner-border" role="status"></span>
+
+            <span style={{ fontSize: "27px", paddingLeft: "10px" }}>
+              Loading...
+            </span>
           </p>
         ) : records.length ? (
           <>
@@ -279,7 +283,7 @@ const ViewRecords = () => {
             }}
           >
             <i
-              class="bi bi-database-fill-x"
+              className="bi bi-database-fill-x"
               style={{
                 fontSize: "100px",
               }}

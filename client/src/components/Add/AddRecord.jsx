@@ -42,6 +42,8 @@ const RecordDetail = (props) => {
     ];
     if (!props.new) record.push(location.state.id);
     if (props.new || confirm("Confirm to update")) {
+      console.log(record);
+
       axios
         .post(
           props.new
@@ -58,7 +60,7 @@ const RecordDetail = (props) => {
           alert("Unsuccesful");
         });
 
-      history.back();
+      naviagate("/", { state: true });
     }
   };
 
@@ -78,7 +80,7 @@ const RecordDetail = (props) => {
   const handleDelete = (id) => {
     if (confirm("Confirm to permanently delete")) {
       axios
-        .post("hhttps://wallet-app-u6wd.onrender.com/delete", {
+        .post("https://wallet-app-u6wd.onrender.com/delete", {
           id: id,
         })
         .then((res) => {});

@@ -50,7 +50,7 @@ function Layout() {
                   aria-current="page"
                 >
                   <i
-                    class="bi bi-funnel-fill"
+                    className="bi bi-funnel-fill"
                     style={{ fontSize: "21px", color: "white" }}
                   ></i>
                 </Link>

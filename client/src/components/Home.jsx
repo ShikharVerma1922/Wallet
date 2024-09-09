@@ -6,7 +6,10 @@ const Home = () => {
     <>
       <Balance />
       <LastFiveRecords />
-      <p style={{ textAlign: "center", color: "grey" }}>
+      <p
+        className="fixed-bottom"
+        style={{ textAlign: "center", color: "grey" }}
+      >
         Made with <span style={{ color: "#e25555" }}>♥</span> by Shikhar
       </p>
     </>

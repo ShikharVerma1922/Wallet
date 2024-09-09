@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function Balance() {
@@ -6,6 +7,7 @@ function Balance() {
   const [totalExpense, setTotalExpense] = useState(0);
   const [account, setAccount] = useState("select all");
   const [activeButton, setActiveButton] = useState(3);
+  const location = useLocation();
 
   const totalBalance = async () => {
     try {
@@ -27,7 +29,8 @@ function Balance() {
   // Fetch total income when the component mounts
   useEffect(() => {
     totalBalance();
-  }, [account]);
+    location.state = false;
+  }, [account, location.state]);
 
   const hanbleClick = (buttonNum) => {
     setActiveButton(buttonNum);
@@ -70,15 +73,19 @@ function Balance() {
             Cash
           </button>
         </div>
-        <span
-          onClick={(e) => {
-            setAccount("select all");
-            setActiveButton(3);
-          }}
-          style={{ cursor: "pointer", color: "blue" }}
-        >
-          Select all
-        </span>
+        {activeButton !== 3 ? (
+          <span
+            onClick={(e) => {
+              setAccount("select all");
+              setActiveButton(3);
+            }}
+            style={{ cursor: "pointer", color: "blue" }}
+          >
+            Select all
+          </span>
+        ) : (
+          <span></span>
+        )}
       </div>
       <span style={{ fontWeight: "bold" }}>
         Net Balance:{" "}

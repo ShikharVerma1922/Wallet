@@ -182,10 +182,14 @@ const FilterRecords = () => {
             top: "50%",
             left: "50%",
             transform: "translate(-50%,-50%)",
-            color: "lightgray",
+            color: "grey",
           }}
         >
-          Loading...
+          <span className="spinner-border" role="status"></span>
+
+          <span style={{ fontSize: "27px", paddingLeft: "10px" }}>
+            Loading...
+          </span>
         </p>
       ) : data.length ? (
         <div>
@@ -263,7 +267,7 @@ const FilterRecords = () => {
           }}
         >
           <i
-            class="bi bi-database-fill-x"
+            className="bi bi-database-fill-x"
             style={{
               fontSize: "100px",
             }}

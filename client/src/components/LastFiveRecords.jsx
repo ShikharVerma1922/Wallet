@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { oneMonthAgoDate, currentDate, months } from "./allExports";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 
 const LastFiveRecords = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
   const [isLoading, setIsLoading] = useState(false);
 
   // fetch data of last 30 days
@@ -33,7 +34,8 @@ const LastFiveRecords = () => {
   // render data on mount
   useEffect(() => {
     fetchFilteredData();
-  }, []);
+    location.state = false;
+  }, [location.state]);
 
   // navigate to /update_record with a specific id
   const handleUpdate = (id) => {
@@ -52,7 +54,7 @@ const LastFiveRecords = () => {
           transac_date: adjustedDate.toLocaleDateString("en-CA").split("T")[0],
         };
         console.log("navigated to update_record");
-        
+
         navigate("/update_record", { state: correctedData, update: true });
         //   console.log("hi");
       });
@@ -78,17 +80,23 @@ const LastFiveRecords = () => {
       <h2>Last records overview</h2>
       <p className="text-secondary">LAST 30 DAYS</p>
       {isLoading ? (
-        <p
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-            color: "lightgray",
-          }}
-        >
-          Loading...
-        </p>
+        <>
+          <p
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%,-50%)",
+              color: "grey",
+            }}
+          >
+            <span className="spinner-border" role="status"></span>
+
+            <span style={{ fontSize: "27px", paddingLeft: "10px" }}>
+              Loading...
+            </span>
+          </p>
+        </>
       ) : data.length ? (
         <ul className="list-unstyled">
           {data.slice(0, 5).map((i, index) => {
@@ -159,7 +167,7 @@ const LastFiveRecords = () => {
           }}
         >
           <i
-            class="bi bi-database-fill-x"
+            className="bi bi-database-fill-x"
             style={{
               fontSize: "100px",
             }}
