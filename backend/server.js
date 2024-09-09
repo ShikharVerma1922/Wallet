@@ -1,6 +1,6 @@
 import express, { query } from "express";
 import cors from "cors";
-import pg from "pg";
+import pg, { Pool } from "pg";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -17,7 +17,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-const connection = {
+const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
@@ -26,7 +26,7 @@ const connection = {
   ssl: {
     rejectUnauthorized: false, // For development only; adjust as needed
   },
-};
+});
 
 app.get("/", (req, res) => {
   res.send("Welcome to the Wallet App API");
@@ -34,8 +34,7 @@ app.get("/", (req, res) => {
 
 app.get("/get_balance", async (req, res) => {
   const { account } = req.query;
-  const db = new pg.Client(connection);
-  db.connect();
+  const db = await pool.connect();
   try {
     let query =
       "SELECT SUM(amount) AS total_amount FROM records WHERE transac_type = $1";
@@ -56,13 +55,13 @@ app.get("/get_balance", async (req, res) => {
     console.error(err);
     res.status(500).send("Server Error");
   } finally {
-    db.end();
+    pool.end();
   }
 });
 
 app.get("/view_records", async (req, res) => {
   const { datePattern, category } = req.query;
-  const db = new pg.Client(connection);
+  const db = await pool.connect();
 
   try {
     let query = "select * from records where transac_date::text LIKE $1";
@@ -75,7 +74,6 @@ app.get("/view_records", async (req, res) => {
       amountQuery += ` AND category = $3`;
     }
     query += " ORDER BY transac_date DESC, transac_time DESC";
-    db.connect();
     // records
     const result = await db.query(query, queryParams);
     // amount
@@ -88,14 +86,13 @@ app.get("/view_records", async (req, res) => {
     console.error(err);
     res.status(500).send("Server Error");
   } finally {
-    db.end();
+    pool.end();
   }
 });
 
-app.post("/insert_record", (req, res) => {
+app.post("/insert_record", async (req, res) => {
   const details = req.body.record;
-  const db = new pg.Client(connection);
-  db.connect();
+  const db = await pool.connect();
   db.query(
     "INSERT INTO records(transac_type,category,account,amount,transac_date,note,transac_time) VALUES($1, $2, $3, $4, $5, $6, $7)",
     [...details],
@@ -106,43 +103,40 @@ app.post("/insert_record", (req, res) => {
         // showRecords();
         res.status(200).send("Succussful");
       }
-      db.end();
+      pool.end();
     }
   );
 });
 
-app.post("/delete", (req, res) => {
+app.post("/delete", async (req, res) => {
   const id = req.body.id;
-  const db = new pg.Client(connection);
-  db.connect();
+  const db = await pool.connect();
   db.query("DELETE FROM records WHERE ID= $1", [id], (err, res_2) => {
     if (err) {
       console.log(err);
     } else {
       //   showRecords();
     }
-    db.end();
+    pool.end();
   });
 });
 
 app.post("/get_single_record", async (req, res) => {
   const id = req.body.id;
-  const db = new pg.Client(connection);
-  db.connect();
+  const db = await pool.connect();
   db.query("SELECT * FROM records WHERE id= $1", [id], (err, res_2) => {
     if (err) {
       console.error("error", err.stack);
     } else {
       res.json(res_2.rows[0]);
     }
-    db.end();
+    pool.end();
   });
 });
 
-app.post("/update", (req, res) => {
+app.post("/update", async (req, res) => {
   const details = req.body.record;
-  const db = new pg.Client(connection);
-  db.connect();
+  const db = await pool.connect();
   db.query(
     "UPDATE records SET transac_type = $1, category = $2, account = $3, amount = $4, transac_date = $5, note = $6, transac_time = $7 WHERE id = $8",
     [...details],
@@ -153,14 +147,14 @@ app.post("/update", (req, res) => {
         // showRecords();
         res.status(200).send("Succussful");
       }
-      db.end();
+      pool.end();
     }
   );
 });
 
 app.get("/filter-record", async (req, res) => {
   const { startDate, endDate, category, account } = req.query;
-  const db = new pg.Client(connection);
+  const db = await pool.connect();
 
   try {
     // Build your SQL query with optional filters
@@ -185,7 +179,6 @@ app.get("/filter-record", async (req, res) => {
       queryParams.push(account);
       query += ` AND account = $${queryParams.length}`;
     }
-    db.connect();
     const result = await db.query(
       `${query} ORDER BY transac_date DESC, transac_time DESC`,
       queryParams
@@ -195,13 +188,13 @@ app.get("/filter-record", async (req, res) => {
     console.error(err);
     res.status(500).send("Server Error");
   } finally {
-    db.end();
+    pool.end();
   }
 });
 
 app.get("/filter-balance", async (req, res) => {
   const { startDate, endDate, category, account } = req.query;
-  const db = new pg.Client(connection);
+  const db = await pool.connect();
 
   try {
     let incomeQuery =
@@ -230,7 +223,6 @@ app.get("/filter-balance", async (req, res) => {
       incomeQuery += ` AND transac_date <= $${queryParams.length}`;
       expenseQuery += ` AND transac_date <= $${queryParams.length}`;
     }
-    db.connect();
     const result = await db.query(incomeQuery, queryParams);
     const result_2 = await db.query(expenseQuery, queryParams);
     const totalIncome = result.rows[0].total_amount || 0; // Handle null if no data
@@ -240,7 +232,7 @@ app.get("/filter-balance", async (req, res) => {
     console.error(err);
     res.status(500).send("Server Error");
   } finally {
-    db.end();
+    pool.end();
   }
 });
 
