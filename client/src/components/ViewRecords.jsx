@@ -19,10 +19,12 @@ const ViewRecords = () => {
   const [totalExpense, setTotalExpense] = useState(0);
   const [options] = useState(categoryList);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   // fetch data for a specified month
   const fetchData = async () => {
     try {
+      setIsLoading(true);
       const params = new URLSearchParams({
         ...(datePattern && { datePattern }),
         ...(category && { category }),
@@ -36,6 +38,8 @@ const ViewRecords = () => {
       setTotalExpense(jsonData.totalExpense);
     } catch (error) {
       console.error("Error fetching filtered data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -195,7 +199,9 @@ const ViewRecords = () => {
         </form>
       </div>
       <div style={{ margin: "230px 10px 0px 10px" }}>
-        {records.length ? (
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : records.length ? (
           <>
             <ul className="list-unstyled">
               {records.map((record, index) => {

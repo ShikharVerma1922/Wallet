@@ -17,9 +17,11 @@ const FilterRecords = () => {
   const [options] = useState(categoryList);
   const [buttonClicked, setButtonclicked] = useState(false);
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
   const fetchFilteredData = async () => {
     try {
+      setIsLoading(true);
       const params = new URLSearchParams({
         ...(startDate && { startDate }),
         ...(endDate && { endDate }),
@@ -41,6 +43,8 @@ const FilterRecords = () => {
       setTotalExpense(result2.totalExpense);
     } catch (error) {
       console.error("Error fetching filtered data:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -171,7 +175,9 @@ const FilterRecords = () => {
           </span>
         </div>
       </form>
-      {data.length ? (
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : data.length ? (
         <div>
           <div
             className="d-flex justify-content-between mb-2 mt-2"
