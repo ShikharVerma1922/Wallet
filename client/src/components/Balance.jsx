@@ -7,10 +7,12 @@ function Balance() {
   const [totalExpense, setTotalExpense] = useState(0);
   const [account, setAccount] = useState("select all");
   const [activeButton, setActiveButton] = useState(3);
+  const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
 
   const totalBalance = async () => {
     try {
+      setIsLoading(true);
       const params = new URLSearchParams({
         ...(account && { account }),
       });
@@ -23,6 +25,8 @@ function Balance() {
       setTotalExpense(data.totalExpense);
     } catch (error) {
       console.error("Error fetching total income:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -89,15 +93,25 @@ function Balance() {
       </div>
       <span style={{ fontWeight: "bold" }}>
         Net Balance:{" "}
-        <span
-          style={
-            totalIncome - totalExpense < 0
-              ? { color: "red" }
-              : { color: "green" }
-          }
-        >
-          Rs {(totalIncome - totalExpense).toFixed(2)}
-        </span>
+        {isLoading ? (
+          <span style={{ color: "grey" }}>
+            <span className="spinner-grow spinner-grow-sm" role="status"></span>
+
+            {/* <span style={{ fontSize: "15px", paddingLeft: "5px" }}>
+              Loading...
+            </span> */}
+          </span>
+        ) : (
+          <span
+            style={
+              totalIncome - totalExpense < 0
+                ? { color: "red" }
+                : { color: "green" }
+            }
+          >
+            Rs {(totalIncome - totalExpense).toFixed(2)}
+          </span>
+        )}
       </span>
     </div>
   );

@@ -259,8 +259,8 @@ const ViewRecords = () => {
                         handleUpdate(record.id);
                       }}
                     >
-                      <div className="d-flex justify-content-between mb-3 ">
-                        <div className="d-flex gap-1">
+                      <div className="d-flex justify-content-between mb-3 mt-3">
+                        <div className="d-flex gap-3">
                           <span
                             className="rounded-circle d-flex justify-content-center align-items-center"
                             style={{
