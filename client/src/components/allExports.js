@@ -4,7 +4,7 @@ export let categoryList = [
   "Food & Drinks",
   "Groceries",
   "Shopping",
-  "Tranportation",
+  "Transportation",
   "Vehicle",
   "Internet",
   "Entertainment",
@@ -16,15 +16,15 @@ export let categoryList = [
 
 export let categoryColor = {
   "Food & Drinks": "red",
-  Groceries: "lightred",
+  Groceries: "#FF474C",
   Shopping: "lightblue",
-  Tranportation: "grey",
+  Transportation: "grey",
   Vehicle: "purple",
   Entertainment: "lightgreen",
   Internet: "blue",
   Investment: "pink",
   Rent: "orange",
-  Wage: "darkyellow",
+  Wage: "#9B870C",
   Gifts: "yellow",
 };
 
