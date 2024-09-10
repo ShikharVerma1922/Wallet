@@ -145,26 +145,28 @@ const LastFiveRecords = () => {
                   }}
                 >
                   <div className="d-flex justify-content-between mb-3 ">
-                    <span
-                      className="rounded-circle d-flex justify-content-center align-items-center"
-                      style={{
-                        color: "white",
-                        backgroundColor: categoryColor[i.category],
-                        width: "45px",
-                        height: "45px",
-                        fontSize: "25px",
-                      }}
-                    >
-                      {categoryIcons[i.category] || <FaQuestion />}
-                    </span>
-                    <div className="d-flex flex-column align-items-start">
-                      <p
-                        className="p-0 mb-0"
-                        style={{ fontWeight: "bold", fontSize: "large" }}
+                    <div className="d-flex gap-1">
+                      <span
+                        className="rounded-circle d-flex justify-content-center align-items-center"
+                        style={{
+                          color: "white",
+                          backgroundColor: categoryColor[i.category],
+                          width: "45px",
+                          height: "45px",
+                          fontSize: "25px",
+                        }}
                       >
-                        {i.category}
-                      </p>
-                      <p className="p-0 mb-0 text-muted">{i.account}</p>
+                        {categoryIcons[i.category] || <FaQuestion />}
+                      </span>
+                      <div className="d-flex flex-column align-items-start">
+                        <p
+                          className="p-0 mb-0"
+                          style={{ fontWeight: "bold", fontSize: "large" }}
+                        >
+                          {i.category}
+                        </p>
+                        <p className="p-0 mb-0 text-muted">{i.account}</p>
+                      </div>
                     </div>
                     <div className="d-flex flex-column align-items-end">
                       <p
