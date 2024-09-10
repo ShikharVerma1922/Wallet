@@ -8,12 +8,31 @@ import {
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
-import { MdFastfood } from "react-icons/md";
+import { MdFastfood, MdSubscriptions } from "react-icons/md";
 import { GiMilkCarton } from "react-icons/gi";
+import {
+  FaBus,
+  FaCar,
+  FaCoins,
+  FaGift,
+  FaPhoneAlt,
+  FaQuestion,
+  FaShoppingBag,
+} from "react-icons/fa";
+import { RiStockFill } from "react-icons/ri";
 
 let categoryIcons = {
   "Food & Drinks": <MdFastfood />,
   Groceries: <GiMilkCarton />,
+  Shopping: <FaShoppingBag />,
+  Transportation: <FaBus />,
+  Vehicle: <FaCar />,
+  Entertainment: <MdSubscriptions />,
+  Internet: <FaPhoneAlt />,
+  Rent: <GiHouseKeys />,
+  Investment: <RiStockFill />,
+  Wage: <FaCoins />,
+  Gifts: <FaGift />,
 };
 
 const LastFiveRecords = () => {
@@ -136,7 +155,7 @@ const LastFiveRecords = () => {
                         fontSize: "25px",
                       }}
                     >
-                      {categoryIcons[i.category]}
+                      {categoryIcons[i.category] || <FaQuestion />}
                     </span>
                     <div className="d-flex flex-column align-items-start">
                       <p
