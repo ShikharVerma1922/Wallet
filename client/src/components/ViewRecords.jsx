@@ -4,9 +4,6 @@ import axios from "axios";
 import { categoryList, months, categoryColor } from "./allExports";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { useNavigate, useLocation } from "react-router-dom";
-import axios from "axios";
-import "bootstrap/dist/css/bootstrap.css";
 import { MdFastfood, MdSubscriptions } from "react-icons/md";
 import { GiMilkCarton, GiHouseKeys } from "react-icons/gi";
 import {
