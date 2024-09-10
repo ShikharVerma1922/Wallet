@@ -1,3 +1,5 @@
+import { MdFastfood } from "react-icons/md";
+
 export let categoryList = [
   "Food & Drinks",
   "Groceries",
@@ -11,6 +13,20 @@ export let categoryList = [
   "Wage",
   "Gifts",
 ];
+
+export let categoryColor = {
+  "Food & Drinks": "red",
+  Groceries: "lightred",
+  Shopping: "lightblue",
+  Tranportation: "grey",
+  Vehicle: "purple",
+  Entertainment: "lightgreen",
+  Internet: "blue",
+  Investment: "pink",
+  Rent: "orange",
+  Wage: "darkyellow",
+  Gifts: "yellow",
+};
 
 var todaysDate = new Date();
 var dd = String(todaysDate.getDate()).padStart(2, "0");

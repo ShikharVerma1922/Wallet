@@ -1,8 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { oneMonthAgoDate, currentDate, months } from "./allExports";
+import {
+  oneMonthAgoDate,
+  currentDate,
+  months,
+  categoryColor,
+} from "./allExports";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
+import { MdFastfood } from "react-icons/md";
+import { GiMilkCarton } from "react-icons/gi";
+
+let categoryIcons = {
+  "Food & Drinks": <MdFastfood />,
+  Groceries: <GiMilkCarton />,
+};
 
 const LastFiveRecords = () => {
   const [data, setData] = useState([]);
@@ -114,6 +126,18 @@ const LastFiveRecords = () => {
                   }}
                 >
                   <div className="d-flex justify-content-between mb-3 ">
+                    <span
+                      className="rounded-circle d-flex justify-content-center align-items-center"
+                      style={{
+                        color: "white",
+                        backgroundColor: categoryColor[i.category],
+                        width: "45px",
+                        height: "45px",
+                        fontSize: "25px",
+                      }}
+                    >
+                      {categoryIcons[i.category]}
+                    </span>
                     <div className="d-flex flex-column align-items-start">
                       <p
                         className="p-0 mb-0"
