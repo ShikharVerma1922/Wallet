@@ -158,7 +158,7 @@ const LastFiveRecords = () => {
                       >
                         {categoryIcons[i.category] || <FaQuestion />}
                       </span>
-                      <div className="d-flex flex-column align-items-start">
+                      <div className="d-flex flex-column align-items-start gap-3">
                         <p
                           className="p-0 mb-0"
                           style={{ fontWeight: "bold", fontSize: "large" }}
@@ -166,6 +166,11 @@ const LastFiveRecords = () => {
                           {i.category}
                         </p>
                         <p className="p-0 mb-0 text-muted">{i.account}</p>
+                        {i.note ? (
+                          <p className="p-0 mb-0 text-muted">"{i.note}"</p>
+                        ) : (
+                          <span></span>
+                        )}
                       </div>
                     </div>
                     <div className="d-flex flex-column align-items-end">

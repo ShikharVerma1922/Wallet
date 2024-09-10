@@ -22,10 +22,10 @@ export let categoryColor = {
   Vehicle: "purple",
   Entertainment: "lightgreen",
   Internet: "blue",
-  Investment: "pink",
+  Investment: "FF69B4",
   Rent: "orange",
   Wage: "#9B870C",
-  Gifts: "yellow",
+  Gifts: "#FFBF00",
 };
 
 var todaysDate = new Date();
