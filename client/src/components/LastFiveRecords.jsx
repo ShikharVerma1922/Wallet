@@ -9,7 +9,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import { MdFastfood, MdSubscriptions } from "react-icons/md";
-import { GiMilkCarton } from "react-icons/gi";
+import { GiMilkCarton, GiHouseKeys } from "react-icons/gi";
 import {
   FaBus,
   FaCar,

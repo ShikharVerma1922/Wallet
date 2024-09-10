@@ -1,9 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { categoryList, months } from "./allExports";
+import { categoryList, months, categoryColor } from "./allExports";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { useNavigate, useLocation } from "react-router-dom";
+import axios from "axios";
+import "bootstrap/dist/css/bootstrap.css";
+import { MdFastfood, MdSubscriptions } from "react-icons/md";
+import { GiMilkCarton, GiHouseKeys } from "react-icons/gi";
+import {
+  FaBus,
+  FaCar,
+  FaCoins,
+  FaGift,
+  FaPhoneAlt,
+  FaQuestion,
+  FaShoppingBag,
+} from "react-icons/fa";
+import { RiStockFill } from "react-icons/ri";
+
+let categoryIcons = {
+  "Food & Drinks": <MdFastfood />,
+  Groceries: <GiMilkCarton />,
+  Shopping: <FaShoppingBag />,
+  Transportation: <FaBus />,
+  Vehicle: <FaCar />,
+  Entertainment: <MdSubscriptions />,
+  Internet: <FaPhoneAlt />,
+  Rent: <GiHouseKeys />,
+  Investment: <RiStockFill />,
+  Wage: <FaCoins />,
+  Gifts: <FaGift />,
+};
 
 const ViewRecords = () => {
   const [records, setRecords] = useState([]);
@@ -234,16 +263,30 @@ const ViewRecords = () => {
                       }}
                     >
                       <div className="d-flex justify-content-between mb-3 ">
-                        <div className="d-flex flex-column align-items-start">
-                          <p
-                            className="p-0 mb-0"
-                            style={{ fontWeight: "bold", fontSize: "large" }}
+                        <div className="d-flex gap-1">
+                          <span
+                            className="rounded-circle d-flex justify-content-center align-items-center"
+                            style={{
+                              color: "white",
+                              backgroundColor: categoryColor[record.category],
+                              width: "45px",
+                              height: "45px",
+                              fontSize: "25px",
+                            }}
                           >
-                            {record.category}
-                          </p>
-                          <p className="p-0 mb-0 text-muted">
-                            {record.account}
-                          </p>
+                            {categoryIcons[record.category] || <FaQuestion />}
+                          </span>
+                          <div className="d-flex flex-column align-items-start">
+                            <p
+                              className="p-0 mb-0"
+                              style={{ fontWeight: "bold", fontSize: "large" }}
+                            >
+                              {record.category}
+                            </p>
+                            <p className="p-0 mb-0 text-muted">
+                              {record.account}
+                            </p>
+                          </div>
                         </div>
                         <div className="d-flex flex-column align-items-end">
                           <p
