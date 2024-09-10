@@ -90,7 +90,7 @@ const RecordDetail = (props) => {
   };
 
   return (
-    <div className="container">
+    <div className="container-add">
       <h1>Enter Details</h1>
       <form action="/insert_record" onSubmit={handleSubmit}>
         {/* transaction type */}

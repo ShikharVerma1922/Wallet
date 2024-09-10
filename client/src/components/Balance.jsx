@@ -9,6 +9,8 @@ function Balance() {
   const [activeButton, setActiveButton] = useState(3);
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const [savingsAccBalance, setSavingsAccBalance] = useState(0);
+  const [cashBalance, setCashBalance] = useState(0);
 
   const totalBalance = async () => {
     try {
@@ -30,9 +32,27 @@ function Balance() {
     }
   };
 
+  const getAccountBalance = async () => {
+    try {
+      const response = await fetch(
+        `https://wallet-app-u6wd.onrender.com/get_balance?savings%20account}`
+      );
+      const data = await response.json();
+      setSavingsAccBalance(data.totalIncome - data.totalExpense);
+      const response2 = await fetch(
+        `https://wallet-app-u6wd.onrender.com/get_balance?cash}`
+      );
+      const data2 = await response2.json();
+      setCashBalance(data2.totalIncome - data2.totalExpense);
+    } catch (error) {
+      console.error("Error fetching total income:", error);
+    }
+  };
+
   // Fetch total income when the component mounts
   useEffect(() => {
     totalBalance();
+    getAccountBalance();
     location.state = false;
   }, [account, location.state]);
 
@@ -43,39 +63,47 @@ function Balance() {
   return (
     <div
       style={{
-        margin: "60px 10px 0px 10px",
+        margin: "70px 10px 0px 10px",
         borderBottom: "5px solid grey",
       }}
     >
-      <h1>List of accounts</h1>
-      <div className="d-flex flex-column align-items-center mb-1">
-        <div className="d-flex justify-content-around">
-          <button
-            className={`btn ${
-              activeButton === 1 || activeButton === 3
-                ? "btn-primary"
-                : "btn-secondary"
-            }`}
-            onClick={(e) => {
-              setAccount("savings account");
-              hanbleClick(1);
-            }}
-          >
-            Savings Acc.
-          </button>
-          <button
-            className={`btn ${
-              activeButton === 2 || activeButton === 3
-                ? "btn-danger"
-                : "btn-secondary"
-            }`}
-            onClick={(e) => {
-              setAccount("cash");
-              hanbleClick(2);
-            }}
-          >
-            Cash
-          </button>
+      <h5 className="mb-3">List of accounts</h5>
+      <div className="d-flex flex-column align-items-center mb-3">
+        <div className="container">
+          <div className="row gap-2">
+            <button
+              className={`btn ${
+                activeButton === 1 || activeButton === 3
+                  ? "btn-primary"
+                  : "btn-secondary"
+              } d-flex flex-column p-1 col`}
+              onClick={(e) => {
+                setAccount("savings account");
+                hanbleClick(1);
+              }}
+            >
+              <span style={{ color: "lightgrey", fontSize: "small" }}>
+                Savings Account
+              </span>
+              <span>{savingsAccBalance}</span>
+            </button>
+            <button
+              className={`btn ${
+                activeButton === 2 || activeButton === 3
+                  ? "btn-danger"
+                  : "btn-secondary"
+              } d-flex flex-column p-1 col`}
+              onClick={(e) => {
+                setAccount("cash");
+                hanbleClick(2);
+              }}
+            >
+              <span style={{ color: "lightgrey", fontSize: "small" }}>
+                Cash
+              </span>
+              <span>{cashBalance}</span>
+            </button>
+          </div>
         </div>
         {activeButton !== 3 ? (
           <span
@@ -83,7 +111,12 @@ function Balance() {
               setAccount("select all");
               setActiveButton(3);
             }}
-            style={{ cursor: "pointer", color: "blue" }}
+            style={{
+              cursor: "pointer",
+              color: "#0096FF",
+              marginTop: "10px",
+              textDecoration: "underline",
+            }}
           >
             Select all
           </span>
@@ -91,7 +124,7 @@ function Balance() {
           <span></span>
         )}
       </div>
-      <span style={{ fontWeight: "bold" }}>
+      <div style={{ fontWeight: "bold", marginBottom: "10px" }}>
         Net Balance:{" "}
         {isLoading ? (
           <span style={{ color: "grey" }}>
@@ -108,7 +141,7 @@ function Balance() {
             Rs {(totalIncome - totalExpense).toFixed(2)}
           </span>
         )}
-      </span>
+      </div>
     </div>
   );
 }
