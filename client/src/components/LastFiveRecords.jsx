@@ -144,7 +144,7 @@ const LastFiveRecords = () => {
                     handleUpdate(i.id);
                   }}
                 >
-                  <div className="d-flex justify-content-between mb-3 mt-3 ">
+                  <div className="d-flex justify-content-between mb-3 mt-3 gap-3">
                     <div className="d-flex gap-3">
                       <span
                         className="rounded-circle d-flex justify-content-center align-items-center"
@@ -158,7 +158,7 @@ const LastFiveRecords = () => {
                       >
                         {categoryIcons[i.category] || <FaQuestion />}
                       </span>
-                      <div className="d-flex flex-column align-items-start gap-3">
+                      <div className="d-flex flex-column align-items-start">
                         <p
                           className="p-0 mb-0"
                           style={{ fontWeight: "bold", fontSize: "large" }}

@@ -96,10 +96,6 @@ function Balance() {
         {isLoading ? (
           <span style={{ color: "grey" }}>
             <span className="spinner-grow spinner-grow-sm" role="status"></span>
-
-            {/* <span style={{ fontSize: "15px", paddingLeft: "5px" }}>
-              Loading...
-            </span> */}
           </span>
         ) : (
           <span

@@ -184,11 +184,30 @@ const ViewRecords = () => {
         >
           <div className="d-flex flex-column">
             <p className="mb-1 text-secondary">Total Income</p>
-            <p className="mb-0 fw-bold text-success">₹{totalIncome}</p>
+
+            {isLoading ? (
+              <span style={{ color: "grey" }}>
+                <span
+                  className="spinner-grow spinner-grow-sm"
+                  role="status"
+                ></span>
+              </span>
+            ) : (
+              <p className="mb-0 fw-bold text-success">₹{totalIncome}</p>
+            )}
           </div>
           <div className="d-flex flex-column align-items-end">
             <p className="mb-1 text-secondary">Total Expense</p>
-            <p className="mb-0 fw-bold text-danger">-₹{totalExpense}</p>
+            {isLoading ? (
+              <span style={{ color: "grey" }}>
+                <span
+                  className="spinner-grow spinner-grow-sm"
+                  role="status"
+                ></span>
+              </span>
+            ) : (
+              <p className="mb-0 fw-bold text-danger">-₹{totalExpense}</p>
+            )}
           </div>
         </div>
         <form
