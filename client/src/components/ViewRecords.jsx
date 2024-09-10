@@ -182,7 +182,7 @@ const ViewRecords = () => {
           className="d-flex justify-content-between mb-2"
           style={{ margin: "5px 10px" }}
         >
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column align-items-center">
             <p className="mb-1 text-secondary">Total Income</p>
 
             {isLoading ? (
@@ -196,7 +196,7 @@ const ViewRecords = () => {
               <p className="mb-0 fw-bold text-success">₹{totalIncome}</p>
             )}
           </div>
-          <div className="d-flex flex-column align-items-end">
+          <div className="d-flex flex-column align-items-center">
             <p className="mb-1 text-secondary">Total Expense</p>
             {isLoading ? (
               <span style={{ color: "grey" }}>
@@ -278,7 +278,7 @@ const ViewRecords = () => {
                         handleUpdate(record.id);
                       }}
                     >
-                      <div className="d-flex justify-content-between mb-3 mt-3">
+                      <div className="d-flex justify-content-between mb-3 mt-3 gap-3">
                         <div className="d-flex gap-3">
                           <span
                             className="rounded-circle d-flex justify-content-center align-items-center"
@@ -302,6 +302,13 @@ const ViewRecords = () => {
                             <p className="p-0 mb-0 text-muted">
                               {record.account}
                             </p>
+                            {record.note ? (
+                              <p className="p-0 mb-0 text-muted">
+                                "{record.note}"
+                              </p>
+                            ) : (
+                              <span></span>
+                            )}
                           </div>
                         </div>
                         <div className="d-flex flex-column align-items-end">

@@ -220,15 +220,34 @@ const FilterRecords = () => {
                       handleUpdate(i.id);
                     }}
                   >
-                    <div className="d-flex justify-content-between mb-3 ">
-                      <div className="d-flex flex-column align-items-start">
-                        <p
-                          className="p-0 mb-0"
-                          style={{ fontWeight: "bold", fontSize: "large" }}
+                    <div className="d-flex justify-content-between mb-3 mt-3 gap-3">
+                      <div className="d-flex gap-3">
+                        <span
+                          className="rounded-circle d-flex justify-content-center align-items-center"
+                          style={{
+                            color: "white",
+                            backgroundColor: categoryColor[i.category],
+                            width: "45px",
+                            height: "45px",
+                            fontSize: "25px",
+                          }}
                         >
-                          {i.category}
-                        </p>
-                        <p className="p-0 mb-0 text-muted">{i.account}</p>
+                          {categoryIcons[i.category] || <FaQuestion />}
+                        </span>
+                        <div className="d-flex flex-column align-items-start">
+                          <p
+                            className="p-0 mb-0"
+                            style={{ fontWeight: "bold", fontSize: "large" }}
+                          >
+                            {i.category}
+                          </p>
+                          <p className="p-0 mb-0 text-muted">{i.account}</p>
+                          {i.note ? (
+                            <p className="p-0 mb-0 text-muted">"{i.note}"</p>
+                          ) : (
+                            <span></span>
+                          )}
+                        </div>
                       </div>
                       <div className="d-flex flex-column align-items-end">
                         <p
