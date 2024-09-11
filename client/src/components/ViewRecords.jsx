@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { categoryList, months, categoryColor } from "./allExports";
+import { categoryList, months, categoryColor, formatToINS } from "./allExports";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { MdFastfood, MdSubscriptions } from "react-icons/md";
@@ -161,6 +161,7 @@ const ViewRecords = () => {
           width: "100%",
           marginTop: "10px",
           paddingTop: "10px",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
         }}
       >
         <div className="d-flex justify-content-center">
@@ -186,27 +187,37 @@ const ViewRecords = () => {
             <p className="mb-1 text-secondary">Total Income</p>
 
             {isLoading ? (
-              <span style={{ color: "grey" }}>
-                <span
-                  className="spinner-grow spinner-grow-sm"
-                  role="status"
-                ></span>
-              </span>
+              <span
+                className="container_b"
+                style={{
+                  marginTop: "10px",
+                  "--uib-color": "#198754",
+                  color: "var(--uib-color)",
+                }}
+                role="status"
+              ></span>
             ) : (
-              <p className="mb-0 fw-bold text-success">₹{totalIncome}</p>
+              <p className="mb-0 fw-bold text-success">
+                ₹{formatToINS(totalIncome)}
+              </p>
             )}
           </div>
           <div className="d-flex flex-column align-items-center">
             <p className="mb-1 text-secondary">Total Expense</p>
             {isLoading ? (
-              <span style={{ color: "grey" }}>
-                <span
-                  className="spinner-grow spinner-grow-sm"
-                  role="status"
-                ></span>
-              </span>
+              <span
+                className="container_b"
+                style={{
+                  marginTop: "10px",
+                  "--uib-color": "#dc3545",
+                  color: "var(--uib-color)",
+                }}
+                role="status"
+              ></span>
             ) : (
-              <p className="mb-0 fw-bold text-danger">-₹{totalExpense}</p>
+              <p className="mb-0 fw-bold text-danger">
+                -₹{formatToINS(totalExpense)}
+              </p>
             )}
           </div>
         </div>
@@ -214,7 +225,8 @@ const ViewRecords = () => {
           style={{
             margin: "0px 10px",
             padding: "10px",
-            borderBottom: "2px solid grey",
+            // borderBottom: "2px solid  grey",
+            // boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
           }}
           className="d-flex"
         >
@@ -321,7 +333,7 @@ const ViewRecords = () => {
                             }
                           >
                             {record.transac_type === "expense" ? "-" : ""}₹
-                            {record.amount}
+                            {formatToINS(record.amount)}
                           </p>
                           <p className="p-0 mb-0 text-muted">
                             {monthDateFormat(

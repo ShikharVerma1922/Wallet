@@ -1,10 +1,43 @@
 import React, { useState, useEffect, useRef } from "react";
-import { categoryList, oneMonthAgoDate, currentDate } from "./allExports";
+import {
+  categoryList,
+  oneMonthAgoDate,
+  currentDate,
+  categoryColor,
+  formatToINS,
+} from "./allExports";
 import axios from "axios";
+import "../app.css";
 import { useNavigate } from "react-router-dom";
 import { months } from "./allExports";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import { MdFastfood, MdSubscriptions } from "react-icons/md";
+import { GiMilkCarton, GiHouseKeys } from "react-icons/gi";
+import {
+  FaBus,
+  FaCar,
+  FaCoins,
+  FaGift,
+  FaPhoneAlt,
+  FaQuestion,
+  FaShoppingBag,
+} from "react-icons/fa";
+import { RiStockFill } from "react-icons/ri";
+
+let categoryIcons = {
+  "Food & Drinks": <MdFastfood />,
+  Groceries: <GiMilkCarton />,
+  Shopping: <FaShoppingBag />,
+  Transportation: <FaBus />,
+  Vehicle: <FaCar />,
+  Entertainment: <MdSubscriptions />,
+  Internet: <FaPhoneAlt />,
+  Rent: <GiHouseKeys />,
+  Investment: <RiStockFill />,
+  Wage: <FaCoins />,
+  Gifts: <FaGift />,
+};
 
 const FilterRecords = () => {
   const [data, setData] = useState([]);
@@ -99,9 +132,18 @@ const FilterRecords = () => {
   };
 
   return (
-    <div style={{ marginTop: "60px", margin: "60px 10px 0px 10px" }}>
-      <h2>Filter Records</h2>
-      <form onSubmit={handleSubmit} style={{ maxWidth: "400px" }}>
+    <div
+      style={{
+        margin: "60px 0px",
+        // padding: "10px",
+        position: "relative",
+      }}
+    >
+      <h2 style={{ padding: "10px" }}>Filter Records</h2>
+      <form
+        onSubmit={handleSubmit}
+        style={{ maxWidth: "400px", position: "relative" }}
+      >
         <div className="d-flex justify-content-evenly mb-1">
           <div className="form-group d-flex flex-column">
             <label>Start Date:</label>
@@ -178,10 +220,11 @@ const FilterRecords = () => {
       {isLoading ? (
         <p
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
+            position: "relative",
+            // top: "50%",
+            // left: "50%",
+            // transform: "translate(-50%,-50%)",
+            textAlign: "center",
             color: "grey",
           }}
         >
@@ -192,21 +235,30 @@ const FilterRecords = () => {
           </span>
         </p>
       ) : data.length ? (
-        <div>
+        <div style={{ position: "relative" }}>
           <div
-            className="d-flex justify-content-between mb-2 mt-2"
-            style={{ margin: "5px 10px", borderBottom: "2px solid grey" }}
+            className="d-flex justify-content-between mb-2 mt-6 sticky-div"
+            style={{
+              padding: "5px 10px",
+              margin: "0",
+              // borderBottom: "2px solid grey",
+              boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            }}
           >
             <div className="d-flex flex-column">
               <p className="mb-1 text-secondary">Total Income</p>
-              <p className="mb-0 fw-bold text-success">₹{totalIncome}</p>
+              <p className="mb-0 fw-bold text-success">
+                ₹{formatToINS(totalIncome)}
+              </p>
             </div>
             <div className="d-flex flex-column align-items-end">
               <p className="mb-1 text-secondary">Total Expense</p>
-              <p className="mb-0 fw-bold text-danger">-₹{totalExpense}</p>
+              <p className="mb-0 fw-bold text-danger">
+                -₹{formatToINS(totalExpense)}
+              </p>
             </div>
           </div>
-          <ul className="list-unstyled">
+          <ul className="list-unstyled" style={{ padding: "10px" }}>
             {data.map((i, index) => {
               const date = new Date(i.transac_date);
               const adjustedDate = new Date(
@@ -258,7 +310,8 @@ const FilterRecords = () => {
                               : { color: "green", fontWeight: "bold" }
                           }
                         >
-                          {i.transac_type === "expense" ? "-" : ""}₹{i.amount}
+                          {i.transac_type === "expense" ? "-" : ""}₹
+                          {formatToINS(i.amount)}
                         </p>
                         <p className="p-0 mb-0 text-muted">
                           {monthDateFormat(
@@ -278,10 +331,11 @@ const FilterRecords = () => {
       ) : (
         <div
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
+            position: "relative",
+            // top: "50%",
+            // left: "50%",
+            // transform: "translate(-50%,-50%)",
+            textAlign: "center",
             color: "lightgray",
           }}
         >

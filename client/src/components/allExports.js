@@ -22,7 +22,7 @@ export let categoryColor = {
   Vehicle: "purple",
   Entertainment: "lightgreen",
   Internet: "blue",
-  Investment: "FF69B4",
+  Investment: "#FF69B4",
   Rent: "orange",
   Wage: "#9B870C",
   Gifts: "#FFBF00",
@@ -73,3 +73,22 @@ export const months = [
 ];
 export const monthNum = mm;
 export const monthName = months[parseInt(monthNum, 10) - 1];
+
+export const formatToINS = (number) => {
+  const numberString = number.toString();
+  const [integerPart, decimalPart] = numberString.split(".");
+
+  const lastThreeDigits = integerPart.slice(-3);
+  const otherDigits = integerPart.slice(0, -3);
+
+  const formattedIntegerPart =
+    otherDigits !== ""
+      ? otherDigits.replace(/\B(?=(\d{2})+(?!\d))/g, ",") +
+        "," +
+        lastThreeDigits
+      : lastThreeDigits;
+
+  return decimalPart
+    ? `${formattedIntegerPart}.${decimalPart}`
+    : formattedIntegerPart;
+};

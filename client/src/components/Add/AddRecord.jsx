@@ -116,14 +116,7 @@ const RecordDetail = (props) => {
             </b>
           </button>
 
-          <div className="d-flex gap-2">
-            <button
-              type="submit"
-              className="btn btn-success"
-              value={props.new ? "Add Record" : "Update"}
-            >
-              <i className="bi bi-check2"></i>
-            </button>
+          <div className="d-flex gap-4">
             {!props.new ? (
               <button
                 type="button"
@@ -137,6 +130,14 @@ const RecordDetail = (props) => {
             ) : (
               ""
             )}
+
+            <button
+              type="submit"
+              className="btn btn-success"
+              value={props.new ? "Add Record" : "Update"}
+            >
+              <i className="bi bi-check2"></i>
+            </button>
           </div>
         </div>
         {/* transaction type */}

@@ -4,9 +4,11 @@ import {
   currentDate,
   months,
   categoryColor,
+  formatToINS,
 } from "./allExports";
 import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
+import "../app.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { MdFastfood, MdSubscriptions } from "react-icons/md";
 import { GiMilkCarton, GiHouseKeys } from "react-icons/gi";
@@ -102,6 +104,7 @@ const LastFiveRecords = () => {
   return (
     <div
       style={{
+        position: "relative",
         margin: "10px",
         padding: "10px",
         boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.4)",
@@ -114,10 +117,11 @@ const LastFiveRecords = () => {
         <>
           <p
             style={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%,-50%)",
+              position: "relative",
+              // position: "absolute",
+              // left: "50%",
+              // transform: "translateX(-50%)",
+              textAlign: "center",
               color: "grey",
             }}
           >
@@ -182,7 +186,8 @@ const LastFiveRecords = () => {
                             : { color: "green", fontWeight: "bold" }
                         }
                       >
-                        {i.transac_type === "expense" ? "-" : ""}₹{i.amount}
+                        {i.transac_type === "expense" ? "-" : ""}₹
+                        {formatToINS(i.amount)}
                       </p>
                       <p className="p-0 mb-0 text-muted">
                         {monthDateFormat(
@@ -209,17 +214,15 @@ const LastFiveRecords = () => {
       ) : (
         <div
           style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
+            position: "relative",
+            textAlign: "center",
             color: "lightgray",
           }}
         >
           <i
             className="bi bi-database-fill-x"
             style={{
-              fontSize: "100px",
+              fontSize: "50px",
             }}
           ></i>
           <p>No Data Found</p>
