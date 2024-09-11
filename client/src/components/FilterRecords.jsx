@@ -7,7 +7,7 @@ import {
   formatToINS,
 } from "./allExports";
 import axios from "axios";
-import "../app.css";
+import "../App.css";
 import { useNavigate } from "react-router-dom";
 import { months } from "./allExports";
 import "bootstrap/dist/css/bootstrap.css";
