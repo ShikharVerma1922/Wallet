@@ -17,7 +17,7 @@ function Layout() {
           className="navbar fixed-top"
           style={{
             backgroundColor: "#00A36C",
-            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
             zIndex: "1024",
           }}
         >
