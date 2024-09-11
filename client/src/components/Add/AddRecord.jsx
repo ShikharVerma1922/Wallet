@@ -198,10 +198,12 @@ const RecordDetail = (props) => {
         </div>
         {/* category */}
         <div className="form-group">
-          <label htmlFor="category">Category</label>
+          <label htmlFor="category" style={{ color: "grey", fontSize: "13px" }}>
+            Category
+          </label>
           <select
             name="category"
-            className="form-control"
+            className="form-select"
             value={category}
             onChange={(e) => {
               setCategory(e.target.value);
@@ -217,10 +219,12 @@ const RecordDetail = (props) => {
         </div>
         {/* account */}
         <div className="form-group">
-          <label htmlFor="account">Account</label>
+          <label htmlFor="account" style={{ color: "grey", fontSize: "13px" }}>
+            Account
+          </label>
           <select
             name="account"
-            className="form-control"
+            className="form-select"
             value={account}
             onChange={(e) => {
               setAccount(e.target.value);
@@ -233,25 +237,35 @@ const RecordDetail = (props) => {
         </div>
         {/* amount */}
         <div className="form-group">
-          <label htmlFor="amount">Amount</label>
-          <input
-            type="number"
-            className="form-control"
-            name="number"
-            value={amount}
-            placeholder="Rs 00.00"
-            autoFocus="autofocus"
-            step="any"
-            onChange={(e) => {
-              setAmount(e.target.value);
-            }}
-            required
-          />
+          <label htmlFor="amount" style={{ color: "grey", fontSize: "13px" }}>
+            Amount
+          </label>
+          <div className="d-flex align-items-center form-control">
+            <span>₹ </span>
+            <input
+              type="number"
+              className="border-0"
+              name="number"
+              value={amount}
+              placeholder="00.00"
+              autoFocus="autofocus"
+              step="any"
+              onChange={(e) => {
+                setAmount(e.target.value);
+              }}
+              required
+            />
+          </div>
         </div>
         {/* date */}
         <div className=" form-group row">
           <div className="col-6">
-            <label htmlFor="transac_date">Date</label>
+            <label
+              htmlFor="transac_date"
+              style={{ color: "grey", fontSize: "13px" }}
+            >
+              Date
+            </label>
             <input
               type="date"
               className="form-control"
@@ -265,7 +279,12 @@ const RecordDetail = (props) => {
           </div>
           {/* time */}
           <div className="col-6">
-            <label htmlFor="transac_time">Time</label>
+            <label
+              htmlFor="transac_time"
+              style={{ color: "grey", fontSize: "13px" }}
+            >
+              Time
+            </label>
             <input
               type="time"
               className="form-control"
@@ -280,7 +299,9 @@ const RecordDetail = (props) => {
         </div>
         {/* note */}
         <div className="from-group">
-          <label htmlFor="note">Note</label>
+          <label htmlFor="note" style={{ color: "grey", fontSize: "13px" }}>
+            Note
+          </label>
           <textarea
             name="note"
             className="form-control"

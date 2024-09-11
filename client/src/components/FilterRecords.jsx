@@ -144,64 +144,99 @@ const FilterRecords = () => {
         onSubmit={handleSubmit}
         style={{ maxWidth: "400px", position: "relative" }}
       >
-        <div className="d-flex justify-content-evenly mb-1">
-          <div className="form-group d-flex flex-column">
-            <label>Start Date:</label>
+        <div
+          className="d-flex justify-content-evenly mb-1 rounded"
+          style={{
+            width: "90%",
+            left: "50%",
+            transform: "translateX(4%)",
+            border: "#0096FF solid 2px",
+          }}
+        >
+          <div className="form-group">
             <input
               type="date"
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
-              className="form-control-sm"
+              className="form-control-sm border-0"
+              // style={{ border: "none" }}
             />
           </div>
-          <div className="form-group d-flex flex-column">
-            <label>End Date:</label>
+          <span
+            style={{
+              backgroundColor: "#0096FF",
+              width: "50px",
+              color: "white",
+              textAlign: "center",
+            }}
+          >
+            -
+          </span>
+          <div className="form-group">
             <input
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
               className="form-control-sm"
+              style={{ border: "none" }}
             />
           </div>
         </div>
-        <div className="d-flex justify-content-evenly mb-3">
-          <div className="form-group d-flex flex-column">
-            <label htmlFor="category">Category:</label>
-            <select
-              name="category"
-              id="category"
-              value={category}
-              onChange={(e) => {
-                setCategory(e.target.value);
-              }}
-              style={{ width: "fit-content" }}
-              className="form-control-sm"
-            >
-              <option value="">Select All</option>
-              {options.map((item, index) => (
-                <option key={index} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="form-group d-flex flex-column">
-            <label htmlFor="account">Account:</label>
-            <select
-              name="account"
-              id="account"
-              value={account}
-              onChange={(e) => {
-                setAccount(e.target.value);
-              }}
-              className="form-control-sm"
-              style={{ width: "fit-content" }}
-            >
-              <option value="">Select All</option>
-              <option value="savings account">Savings Acc.</option>
-              <option value="cash">Cash</option>
-            </select>
-          </div>
+        <div className="d-flex justify-content-center align-items-center mb-3 mt-3 gap-0">
+          {/* <div className="form-group d-flex flex-column"> */}
+          <label htmlFor="category" style={{ fontSize: "13px", color: "grey" }}>
+            Category:
+          </label>
+          <select
+            name="category"
+            id="category"
+            value={category}
+            onChange={(e) => {
+              setCategory(e.target.value);
+            }}
+            style={{
+              width: "100px",
+              fontSize: "12px",
+              border: "none",
+              borderBottom: "grey solid 1px",
+            }}
+            // className="form-control-sm"
+          >
+            <option value="">Select All</option>
+            {options.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
+              </option>
+            ))}
+          </select>
+          {/* </div> */}
+          {/* <div className="form-group d-flex flex-column"> */}
+          <label
+            htmlFor="account"
+            style={{ fontSize: "13px", color: "grey", marginLeft: "10px" }}
+          >
+            Account:
+          </label>
+          <select
+            name="account"
+            id="account"
+            value={account}
+            onChange={(e) => {
+              setAccount(e.target.value);
+            }}
+            // className="form-control-sm"
+            style={{
+              width: "100px",
+              fontSize: "12px",
+              border: "none",
+              borderBottom: "grey solid 1px",
+            }}
+          >
+            <option value="">Select All</option>
+            <option value="savings account">Savings Acc.</option>
+            <option value="cash">Cash</option>
+          </select>
+          {/* </div> */}
         </div>
         <div className="d-flex flex-column justify-content-start align-items-center">
           <input
