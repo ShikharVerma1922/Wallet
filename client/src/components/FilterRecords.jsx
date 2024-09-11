@@ -159,7 +159,7 @@ const FilterRecords = () => {
               value={startDate}
               onChange={(e) => setStartDate(e.target.value)}
               className="form-control-sm border-0"
-              // style={{ border: "none" }}
+              style={{ backgroundColor: "white" }}
             />
           </div>
           <span
@@ -177,8 +177,8 @@ const FilterRecords = () => {
               type="date"
               value={endDate}
               onChange={(e) => setEndDate(e.target.value)}
-              className="form-control-sm"
-              style={{ border: "none" }}
+              className="form-control-sm border-0"
+              style={{ backgroundColor: "white" }}
             />
           </div>
         </div>
@@ -199,6 +199,7 @@ const FilterRecords = () => {
               fontSize: "12px",
               border: "none",
               borderBottom: "grey solid 1px",
+              backgroundColor: "white",
             }}
             // className="form-control-sm"
           >
@@ -230,6 +231,7 @@ const FilterRecords = () => {
               fontSize: "12px",
               border: "none",
               borderBottom: "grey solid 1px",
+              backgroundColor: "white",
             }}
           >
             <option value="">Select All</option>
