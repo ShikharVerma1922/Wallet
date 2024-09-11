@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { formatToINS } from "./allExports";
-import "../app.css";
+import "../App";
 
 function Balance() {
   const [totalIncome, setTotalIncome] = useState(0);
