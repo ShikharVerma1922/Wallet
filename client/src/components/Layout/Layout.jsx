@@ -15,7 +15,11 @@ function Layout() {
         ></meta>
         <nav
           className="navbar fixed-top"
-          style={{ backgroundColor: "#00A36C" }}
+          style={{
+            backgroundColor: "#00A36C",
+            boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+            zIndex: "1024",
+          }}
         >
           <div className="container-fluid">
             <Link className="navbar-brand" to="/">
