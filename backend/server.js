@@ -26,7 +26,7 @@ const corsOptions = {
   allowedHeaders: ["Content-Type", "Authorization"],
 };
 
-app.use(cors(corsOptions));
+app.use(cors());
 
 const pool = new Pool({
   user: process.env.DB_USER,

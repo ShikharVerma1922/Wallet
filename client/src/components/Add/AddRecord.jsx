@@ -91,14 +91,61 @@ const RecordDetail = (props) => {
 
   return (
     <div className="container-add">
-      <h1>Enter Details</h1>
-      <form action="/insert_record" onSubmit={handleSubmit}>
+      <form
+        action="/insert_record"
+        className="d-flex flex-column gap-3"
+        onSubmit={handleSubmit}
+      >
+        <div className="d-flex justify-content-between mb-2">
+          {/* <input
+            type="submit"
+            className="btn btn-success"
+            value={props.new ? "Add Record" : "Update"}
+          /> */}
+
+          <button
+            type="button"
+            className="btn btn-secondary"
+            value="Cancel"
+            onClick={() => {
+              history.back();
+            }}
+          >
+            <b>
+              <i className="bi bi-x-lg" style={{ fontWeight: "bold" }}></i>
+            </b>
+          </button>
+
+          <div className="d-flex gap-2">
+            <button
+              type="submit"
+              className="btn btn-success"
+              value={props.new ? "Add Record" : "Update"}
+            >
+              <i className="bi bi-check2"></i>
+            </button>
+            {!props.new ? (
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={(e) => {
+                  handleDelete(location.state.id);
+                }}
+              >
+                <i className="bi bi-trash"></i>
+              </button>
+            ) : (
+              ""
+            )}
+          </div>
+        </div>
         {/* transaction type */}
 
         <div
           className="btn-group"
           role="group"
           aria-label="Basic radio toggle button group"
+          style={{ left: "50%", transform: "translateX(-50%)" }}
         >
           <input
             type="radio"
@@ -240,37 +287,6 @@ const RecordDetail = (props) => {
               setNote(e.target.value);
             }}
           ></textarea>
-        </div>
-        <div className="d-flex justify-content-around mt-4">
-          <input
-            type="submit"
-            className="btn btn-success"
-            value={props.new ? "Add Record" : "Update"}
-          />
-
-          <button
-            type="button"
-            className="btn btn-secondary"
-            value="Cancel"
-            onClick={() => {
-              history.back();
-            }}
-          >
-            <i className="bi bi-x-circle"></i> Cancel
-          </button>
-          {!props.new ? (
-            <button
-              type="button"
-              className="btn btn-outline-danger"
-              onClick={(e) => {
-                handleDelete(location.state.id);
-              }}
-            >
-              <i className="bi bi-trash"></i> Delete
-            </button>
-          ) : (
-            ""
-          )}
         </div>
       </form>
     </div>
