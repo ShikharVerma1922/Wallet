@@ -89,7 +89,7 @@ function Balance() {
               </span>
               <span>
                 {isLoading ? (
-                  <span>--</span>
+                  <span>₹--</span>
                 ) : savingsAccBalance < 0 ? (
                   <span>
                     <span>-₹</span>
@@ -118,7 +118,9 @@ function Balance() {
                 Cash
               </span>
               <span>
-                {cashBalance < 0 ? (
+                {isLoading ? (
+                  <span>₹--</span>
+                ) : cashBalance < 0 ? (
                   <span>
                     <span>-₹</span>
                     {formatToINS(-cashBalance)}
