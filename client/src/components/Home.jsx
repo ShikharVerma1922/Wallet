@@ -20,10 +20,10 @@ const Home = () => {
 
       <div className="container-fluid">
         <div className="row">
-          <div className="col-12 col-md-6 mb-1">
+          <div className="col-12 col-md-6 mb-3">
             <LastFiveRecords />
           </div>
-          <div className="col-12 col-md-6 mb-1">
+          <div className="col-12 col-md-6 mb-3">
             <TotalExpensePiechart />
           </div>
         </div>

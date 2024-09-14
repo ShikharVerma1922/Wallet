@@ -7,13 +7,24 @@ const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 const TotalExpensePiechart = () => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [datePattern, setDatePattern] = useState(
+    `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(
+      2,
+      "0"
+    )}%`
+  );
   const location = useLocation();
 
   const expenseByCategory = async () => {
     try {
       setIsLoading(true);
+      const params = new URLSearchParams({
+        ...(datePattern && { datePattern }),
+      });
+      console.log(datePattern);
+
       const response = await fetch(
-        "https://wallet-app-u6wd.onrender.com/expense_by_category"
+        `https://wallet-app-u6wd.onrender.com/expense_by_category?${params.toString()}`
       );
       const datar = await response.json();
       const formattedData = datar.map((item) => ({
@@ -47,6 +58,7 @@ const TotalExpensePiechart = () => {
       }}
     >
       <h3>Spending by Categories</h3>
+      <p style={{ color: "#666" }}>This Month</p>
       {isLoading ? (
         <>
           <p

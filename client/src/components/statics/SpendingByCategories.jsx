@@ -25,7 +25,7 @@ const CategoryPieChart = ({ data }) => {
   );
 
   const chartWidth = 300; // Chart width
-  const chartHeight = 400; // Chart height
+  const chartHeight = 450; // Chart height
   const centerX = chartWidth / 2; // X position of center
   const centerY = chartHeight / 2; // Y position of center
   const innerRadius = 80; // Inner radius size for centering text
@@ -35,19 +35,13 @@ const CategoryPieChart = ({ data }) => {
     <div
       style={{
         textAlign: "center",
-        // margin: "10px",
-        // maxWidth: "600px",
-        // minHeight: "400px",
-        // // width: "100%",
-        // borderRadius: "5px",
-        // boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.4)",
       }}
       className="d-flex flex-column justify-content-center align-items-center pt-4"
     >
       <PieChart
         width={chartWidth}
         height={chartHeight}
-        margin={{ top: 0, right: 20, bottom: 20, left: 20 }}
+        margin={{ top: 0, right: 20, bottom: 0, left: 20 }}
       >
         <Pie
           data={data}
@@ -86,19 +80,19 @@ const CategoryPieChart = ({ data }) => {
         <>
           <text
             x={centerX}
-            y={centerY - 60}
+            y={centerY - 90}
             textAnchor="middle"
             dominantBaseline="middle"
-            style={{ fontSize: "16px", fontWeight: "bold" }}
+            style={{ fontSize: "16px", fontSize: "20px" }}
           >
             {selectedCategory ? selectedCategory.name : "All"}
           </text>
           <text
             x={centerX}
-            y={centerY - 40}
+            y={centerY - 65}
             textAnchor="middle"
             dominantBaseline="middle"
-            style={{ fontSize: "14px", fontWeight: "normal", fill: "#888" }}
+            style={{ fontSize: "18px", fill: "#666" }}
           >
             ₹
             {selectedCategory

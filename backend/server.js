@@ -217,10 +217,11 @@ app.get("/filter-balance", async (req, res) => {
 });
 
 app.get("/expense_by_category", async (req, res) => {
+  const { datePattern } = req.query;
   try {
     let query =
-      "select category as name, SUM(amount) as amount from records	where transac_type = 'expense' group by category";
-    const result = await pool.query(query);
+      "select category as name, SUM(amount) as amount from records	where transac_date::text LIKE $1 AND transac_type= 'expense' group by category";
+    const result = await pool.query(query, [datePattern]);
     const data = result.rows;
     res.json(data);
   } catch (err) {

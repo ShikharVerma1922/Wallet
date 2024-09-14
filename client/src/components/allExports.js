@@ -13,6 +13,8 @@ export let categoryList = [
   "Rent",
   "Wage",
   "Gifts",
+  "Medical",
+  "Miscellaneous",
 ];
 
 export let categoryColor = {
@@ -23,10 +25,12 @@ export let categoryColor = {
   Vehicle: "purple",
   Entertainment: "lightgreen",
   Internet: "blue",
+  Medical: "green",
   Investment: "#FF69B4",
   Rent: "orange",
   Wage: "#9B870C",
   Gifts: "#FFBF00",
+  Miscellaneous: "#DAA06D",
 };
 
 var todaysDate = new Date();

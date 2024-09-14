@@ -10,7 +10,11 @@ import { useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import "../App.css";
 import "bootstrap/dist/css/bootstrap.css";
-import { MdFastfood, MdSubscriptions } from "react-icons/md";
+import {
+  MdFastfood,
+  MdSubscriptions,
+  MdMiscellaneousServices,
+} from "react-icons/md";
 import { GiMilkCarton, GiHouseKeys } from "react-icons/gi";
 import {
   FaBus,
@@ -20,6 +24,7 @@ import {
   FaPhoneAlt,
   FaQuestion,
   FaShoppingBag,
+  FaBriefcaseMedical,
 } from "react-icons/fa";
 import { RiStockFill } from "react-icons/ri";
 
@@ -35,6 +40,8 @@ let categoryIcons = {
   Investment: <RiStockFill />,
   Wage: <FaCoins />,
   Gifts: <FaGift />,
+  Medical: <FaBriefcaseMedical />,
+  Miscellaneous: <MdMiscellaneousServices />,
 };
 
 const LastFiveRecords = () => {
