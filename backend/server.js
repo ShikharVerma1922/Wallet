@@ -216,14 +216,10 @@ app.get("/filter-balance", async (req, res) => {
   }
 });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/build", "index.html"));
-});
-
 app.get("/expense_by_category", async (req, res) => {
   try {
     let query =
-      "select category as name, SUM(amount) as amount from records	where transac_type= 'expense' group by category";
+      "select category as name, SUM(amount) as amount from records	where transac_type = 'expense' group by category";
     const result = await pool.query(query);
     const data = result.rows;
     res.json(data);
@@ -231,6 +227,10 @@ app.get("/expense_by_category", async (req, res) => {
     console.error(err);
     res.status(500).send("Server Error");
   }
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
 app.listen(port, () => {
