@@ -225,8 +225,8 @@ app.get("/expense_by_category", async (req, res) => {
     let query =
       "select category as name, SUM(amount) as amount from records	where transac_type= 'expense' group by category";
     const result = await pool.query(query);
-    const data = result.rows[0].total_amount || 0;
-    res.json(data.rows);
+    const data = result.rows;
+    res.json(data);
   } catch (err) {
     console.error(err);
     res.status(500).send("Server Error");
