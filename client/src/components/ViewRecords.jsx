@@ -4,6 +4,7 @@ import axios from "axios";
 import { categoryList, months, categoryColor, formatToINS } from "./allExports";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
+import "../App.css";
 import {
   MdFastfood,
   MdSubscriptions,
@@ -53,6 +54,7 @@ const ViewRecords = () => {
   const [options] = useState(categoryList);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [clicked, setClicked] = useState(null);
 
   // fetch data for a specified month
   const fetchData = async () => {
@@ -77,7 +79,10 @@ const ViewRecords = () => {
   };
 
   // navigate to /update_record with a specific id
-  const handleUpdate = (id) => {
+  const handleUpdate = (id, index) => {
+    setClicked(index);
+    // Optional: Reset after a few seconds
+    setTimeout(() => setClicked(null), 500);
     axios
       .post("https://wallet-app-u6wd.onrender.com/get_single_record", {
         id,
@@ -292,12 +297,14 @@ const ViewRecords = () => {
                 return (
                   <div key={index}>
                     <li
-                      className="border-bottom"
+                      className={`border-bottom clickable-div ${
+                        clicked === index ? "clicked" : ""
+                      }`}
                       onClick={(e) => {
-                        handleUpdate(record.id);
+                        handleUpdate(record.id, index);
                       }}
                     >
-                      <div className="d-flex justify-content-between mb-3 mt-3 gap-3">
+                      <div className="d-flex justify-content-between pb-3 pt-3 gap-3">
                         <div className="d-flex gap-3">
                           <span
                             className="rounded-circle d-flex justify-content-center align-items-center"

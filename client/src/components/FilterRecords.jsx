@@ -58,6 +58,7 @@ const FilterRecords = () => {
   const [buttonClicked, setButtonclicked] = useState(false);
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [clicked, setClicked] = useState(null);
 
   const fetchFilteredData = async () => {
     try {
@@ -98,7 +99,10 @@ const FilterRecords = () => {
     setButtonclicked(false);
   };
 
-  const handleUpdate = (id) => {
+  const handleUpdate = (id, index) => {
+    setClicked(index);
+    // Optional: Reset after a few seconds
+    setTimeout(() => setClicked(null), 500);
     axios
       .post("https://wallet-app-u6wd.onrender.com/get_single_record", {
         id: id,
@@ -311,12 +315,14 @@ const FilterRecords = () => {
               return (
                 <div key={index}>
                   <li
-                    className="border-bottom"
+                    className={`border-bottom clickable-div ${
+                      clicked === index ? "clicked" : ""
+                    }`}
                     onClick={(e) => {
-                      handleUpdate(i.id);
+                      handleUpdate(i.id, index);
                     }}
                   >
-                    <div className="d-flex justify-content-between mb-3 mt-3 gap-3">
+                    <div className="d-flex justify-content-between pb-3 pt-3 gap-3">
                       <div className="d-flex gap-3">
                         <span
                           className="rounded-circle d-flex justify-content-center align-items-center"
