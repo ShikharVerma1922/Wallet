@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import { categoryColor } from "../allExports";
+import "bootstrap/dist/css/bootstrap.css";
 
-const ExpenseDonutChart = ({ data }) => {
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FF6384"];
+const CategoryPieChart = ({ data }) => {
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -18,21 +19,36 @@ const ExpenseDonutChart = ({ data }) => {
     }
   };
 
-  const totalAmount = data.reduce((acc, entry) => acc + entry.amount, 0);
+  const totalAmount = data.reduce(
+    (acc, entry) => acc + parseFloat(entry.amount),
+    0
+  );
 
   const chartWidth = 300; // Chart width
-  const chartHeight = 500; // Chart height
+  const chartHeight = 400; // Chart height
   const centerX = chartWidth / 2; // X position of center
   const centerY = chartHeight / 2; // Y position of center
   const innerRadius = 80; // Inner radius size for centering text
   const outerRadius = 130; // Outer radius size
 
   return (
-    <div style={{ textAlign: "center", margin: "10px" }}>
+    <div
+      style={{
+        textAlign: "center",
+        margin: "10px",
+        maxWidth: "600px",
+        minHeight: "400px",
+        // width: "100%",
+        borderRadius: "5px",
+        boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.4)",
+      }}
+      className="d-flex flex-column justify-content-center align-items-center pt-4"
+    >
+      <h3>Spending by Categories</h3>
       <PieChart
         width={chartWidth}
         height={chartHeight}
-        margin={{ top: 0, right: 20, bottom: 100, left: 20 }}
+        margin={{ top: 0, right: 20, bottom: 20, left: 20 }}
       >
         <Pie
           data={data}
@@ -53,7 +69,7 @@ const ExpenseDonutChart = ({ data }) => {
           {data.map((entry, index) => (
             <Cell
               key={`cell-${index}`}
-              fill={COLORS[index % COLORS.length]}
+              fill={categoryColor[entry.name] || "#CCCCCC"}
               style={{ cursor: "pointer" }}
               stroke={index === activeIndex ? "#000" : "none"} // Optional: add border color for highlighted segment
               strokeWidth={index === activeIndex ? 4 : 0} // Optional: add border width for highlighted segment
@@ -71,7 +87,7 @@ const ExpenseDonutChart = ({ data }) => {
         <>
           <text
             x={centerX}
-            y={centerY - 90}
+            y={centerY - 60}
             textAnchor="middle"
             dominantBaseline="middle"
             style={{ fontSize: "16px", fontWeight: "bold" }}
@@ -80,12 +96,15 @@ const ExpenseDonutChart = ({ data }) => {
           </text>
           <text
             x={centerX}
-            y={centerY - 70}
+            y={centerY - 40}
             textAnchor="middle"
             dominantBaseline="middle"
             style={{ fontSize: "14px", fontWeight: "normal", fill: "#888" }}
           >
-            ₹{selectedCategory ? selectedCategory.amount : totalAmount}
+            ₹
+            {selectedCategory
+              ? selectedCategory.amount
+              : totalAmount.toFixed(2)}
           </text>
         </>
       </PieChart>
@@ -93,4 +112,4 @@ const ExpenseDonutChart = ({ data }) => {
   );
 };
 
-export default ExpenseDonutChart;
+export default CategoryPieChart;

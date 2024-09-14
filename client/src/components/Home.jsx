@@ -1,6 +1,7 @@
 import Balance from "./Balance";
 import LastFiveRecords from "./LastFiveRecords";
 import ExpensePieChart from "./statics/SpendingByCategories";
+import TotalExpensePiechart from "./TotalExpensePiechart";
 
 const Home = () => {
   const data = [
@@ -15,8 +16,7 @@ const Home = () => {
     <div style={{ position: "relative" }}>
       <Balance />
       <LastFiveRecords />
-      <h2>Expense Breakdown</h2>
-      <ExpensePieChart data={data} />
+      <TotalExpensePiechart />
       <p style={{ textAlign: "center", color: "grey", marginTop: "20px" }}>
         Made with <span style={{ color: "#e25555" }}>♥</span> by Shikhar
       </p>
