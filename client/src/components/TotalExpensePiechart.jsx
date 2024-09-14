@@ -21,8 +21,6 @@ const TotalExpensePiechart = () => {
       const params = new URLSearchParams({
         ...(datePattern && { datePattern }),
       });
-      console.log(datePattern);
-
       const response = await fetch(
         `https://wallet-app-u6wd.onrender.com/expense_by_category?${params.toString()}`
       );
@@ -58,7 +56,7 @@ const TotalExpensePiechart = () => {
       }}
     >
       <h3>Spending by Categories</h3>
-      <p style={{ color: "#666" }}>This Month</p>
+      {/* <p style={{ color: "#666" }}>This Month</p> */}
       {isLoading ? (
         <>
           <p

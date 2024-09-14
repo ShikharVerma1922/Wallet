@@ -255,6 +255,7 @@ const RecordDetail = (props) => {
                 name="number"
                 value={amount}
                 placeholder="00.00"
+                min="0"
                 autoFocus="autofocus"
                 step="any"
                 onChange={(e) => {
