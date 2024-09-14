@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home.jsx";
-import Layout from "./components/Layout/Layout.jsx";
+import Layout from "./components/Layout.jsx";
 import ViewRecords from "./components/ViewRecords.jsx";
-import RecordDetail from "./components/Add/AddRecord.jsx";
+import RecordDetail from "./components/AddRecord.jsx";
 import FilterRecodrs from "./components/FilterRecords.jsx";
 
 function App() {

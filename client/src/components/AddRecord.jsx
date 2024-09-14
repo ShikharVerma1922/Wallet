@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { categoryList, currentDate, currentTime } from "../allExports";
+import { categoryList, currentDate, currentTime } from "./allExports";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "./Add.css";
+import "../App.css";
 
 const RecordDetail = (props) => {
   const location = useLocation();

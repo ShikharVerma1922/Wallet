@@ -220,6 +220,19 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "client/build", "index.html"));
 });
 
+app.get("/expense_by_category", async (req, res) => {
+  try {
+    let query =
+      "select category as name, SUM(amount) as amount from records	where transac_type= 'expense' group by category";
+    const result = await pool.query(query);
+    const data = result.rows[0].total_amount || 0;
+    res.json(data.rows);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
+
 app.listen(port, () => {
   console.log(`server is running at port ${port}`);
 });
