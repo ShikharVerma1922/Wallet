@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import CategoryPieChart from "./statics/SpendingByCategories";
-import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
-import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
 
 const TotalExpensePiechart = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
 
   const expenseByCategory = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch(
         "https://wallet-app-u6wd.onrender.com/expense_by_category"
       );
@@ -18,25 +20,70 @@ const TotalExpensePiechart = () => {
         name: item.name,
         amount: parseFloat(item.amount) || 0, // Convert string to number, default to 0 if invalid
       }));
-      console.log(formattedData);
-
       setData(formattedData);
     } catch (error) {
       console.error("Error fetching data:", error);
       setData([]);
     } finally {
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     expenseByCategory();
-  }, []);
-  if (!data || data.length === 0) {
-    return <div>Loading...</div>;
-  }
+    location.chart = false;
+  }, [location.chart]);
 
-  return <CategoryPieChart data={data} />;
+  return (
+    <div
+      style={{
+        // margin: "10px",
+        maxWidth: "600px",
+        // maxHeight: "400px",
+        // width: "100%",
+        borderRadius: "5px",
+        boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.4)",
+        padding: "10px",
+      }}
+    >
+      <h3>Spending by Categories</h3>
+      {isLoading ? (
+        <>
+          <p
+            style={{
+              position: "relative",
+              textAlign: "center",
+              color: "grey",
+            }}
+          >
+            <span className="spinner-border" role="status"></span>
+
+            <span style={{ fontSize: "27px", paddingLeft: "10px" }}>
+              Loading...
+            </span>
+          </p>
+        </>
+      ) : data.length ? (
+        <CategoryPieChart data={data} />
+      ) : (
+        <div
+          style={{
+            position: "relative",
+            textAlign: "center",
+            color: "lightgray",
+          }}
+        >
+          <i
+            className="bi bi-database-fill-x"
+            style={{
+              fontSize: "50px",
+            }}
+          ></i>
+          <p>No Data Found</p>
+        </div>
+      )}
+    </div>
+  );
 };
 
 export default TotalExpensePiechart;

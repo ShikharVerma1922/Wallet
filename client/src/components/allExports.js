@@ -1,4 +1,5 @@
-import { MdFastfood } from "react-icons/md";
+// import { MdFastfood } from "react-icons/md";
+import React from "react";
 
 export let categoryList = [
   "Food & Drinks",

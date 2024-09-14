@@ -60,7 +60,7 @@ const RecordDetail = (props) => {
           alert("Unsuccesful");
         });
 
-      naviagate("/", { state: true });
+      naviagate("/", { state: true, chart: true });
     }
   };
 
@@ -84,233 +84,241 @@ const RecordDetail = (props) => {
           id: id,
         })
         .then((res) => {});
-      naviagate("/", { state: true });
+      naviagate("/", { state: true, chart: true });
     } else {
     }
   };
 
   return (
-    <div className="container-add">
-      <form
-        action="/insert_record"
-        className="d-flex flex-column gap-3"
-        onSubmit={handleSubmit}
-      >
-        <div className="d-flex justify-content-between mb-2">
-          {/* <input
+    <div className="add-record-overlay">
+      <div className="add-record-container ">
+        <form
+          action="/insert_record"
+          className="d-flex flex-column gap-3 "
+          onSubmit={handleSubmit}
+        >
+          <div className="d-flex justify-content-between mb-2">
+            {/* <input
             type="submit"
             className="btn btn-success"
             value={props.new ? "Add Record" : "Update"}
           /> */}
 
-          <button
-            type="button"
-            className="btn btn-secondary"
-            value="Cancel"
-            onClick={() => {
-              history.back();
-            }}
-          >
-            <b>
-              <i className="bi bi-x-lg" style={{ fontWeight: "bold" }}></i>
-            </b>
-          </button>
-
-          <div className="d-flex gap-4">
-            {!props.new ? (
-              <button
-                type="button"
-                className="btn btn-danger"
-                onClick={(e) => {
-                  handleDelete(location.state.id);
-                }}
-              >
-                <i className="bi bi-trash"></i>
-              </button>
-            ) : (
-              ""
-            )}
-
             <button
-              type="submit"
-              className="btn btn-success"
-              value={props.new ? "Add Record" : "Update"}
+              type="button"
+              className="btn btn-secondary"
+              value="Cancel"
+              onClick={() => {
+                history.back();
+              }}
             >
-              <i className="bi bi-check2"></i>
+              <b>
+                <i className="bi bi-x-lg" style={{ fontWeight: "bold" }}></i>
+              </b>
             </button>
+
+            <div className="d-flex gap-4">
+              {!props.new ? (
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={(e) => {
+                    handleDelete(location.state.id);
+                  }}
+                >
+                  <i className="bi bi-trash"></i>
+                </button>
+              ) : (
+                ""
+              )}
+
+              <button
+                type="submit"
+                className="btn btn-success"
+                value={props.new ? "Add Record" : "Update"}
+              >
+                <i className="bi bi-check2"></i>
+              </button>
+            </div>
           </div>
-        </div>
-        {/* transaction type */}
+          {/* transaction type */}
 
-        <div
-          className="btn-group"
-          role="group"
-          aria-label="Basic radio toggle button group"
-          style={{ left: "50%", transform: "translateX(-50%)" }}
-        >
-          <input
-            type="radio"
-            className="btn-check"
-            name="btnradio"
-            id="btnradio1"
-            autoComplete="off"
-            value="income"
-            onChange={(e) => {
-              setType(e.target.value);
-            }}
-            checked={type === "income"}
-          />
-          <label className="btn btn-outline-primary" htmlFor="btnradio1">
-            Income
-          </label>
-
-          <input
-            type="radio"
-            className="btn-check"
-            name="btnradio"
-            id="btnradio2"
-            autoComplete="off"
-            value="expense"
-            onChange={(e) => {
-              setType(e.target.value);
-            }}
-            checked={type === "expense"}
-          />
-          <label className="btn btn-outline-primary" htmlFor="btnradio2">
-            Expense
-          </label>
-
-          <input
-            type="radio"
-            className="btn-check"
-            name="btnradio"
-            id="btnradio3"
-            autoComplete="off"
-            value="transfer"
-            onChange={(e) => {
-              setType(e.target.value);
-            }}
-            checked={type === "transfer"}
-          />
-          <label className="btn btn-outline-primary" htmlFor="btnradio3">
-            Transfer
-          </label>
-        </div>
-        {/* category */}
-        <div className="form-group">
-          <label htmlFor="category" style={{ color: "grey", fontSize: "13px" }}>
-            Category
-          </label>
-          <select
-            name="category"
-            className="form-select"
-            value={category}
-            onChange={(e) => {
-              setCategory(e.target.value);
-            }}
-            required
+          <div
+            className="btn-group"
+            role="group"
+            aria-label="Basic radio toggle button group"
+            style={{ left: "50%", transform: "translateX(-50%)" }}
           >
-            {options.map((option, index) => (
-              <option key={index} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </div>
-        {/* account */}
-        <div className="form-group">
-          <label htmlFor="account" style={{ color: "grey", fontSize: "13px" }}>
-            Account
-          </label>
-          <select
-            name="account"
-            className="form-select"
-            value={account}
-            onChange={(e) => {
-              setAccount(e.target.value);
-            }}
-            required
-          >
-            <option value="savings account">Savings Acc.</option>
-            <option value="cash">Cash</option>
-          </select>
-        </div>
-        {/* amount */}
-        <div className="form-group">
-          <label htmlFor="amount" style={{ color: "grey", fontSize: "13px" }}>
-            Amount
-          </label>
-          <div className="d-flex align-items-center form-control">
-            <span>₹ </span>
             <input
-              type="number"
-              className="border-0"
-              name="number"
-              value={amount}
-              placeholder="00.00"
-              autoFocus="autofocus"
-              step="any"
+              type="radio"
+              className="btn-check"
+              name="btnradio"
+              id="btnradio1"
+              autoComplete="off"
+              value="income"
               onChange={(e) => {
-                setAmount(e.target.value);
+                setType(e.target.value);
               }}
-              required
+              checked={type === "income"}
             />
+            <label className="btn btn-outline-primary" htmlFor="btnradio1">
+              Income
+            </label>
+
+            <input
+              type="radio"
+              className="btn-check"
+              name="btnradio"
+              id="btnradio2"
+              autoComplete="off"
+              value="expense"
+              onChange={(e) => {
+                setType(e.target.value);
+              }}
+              checked={type === "expense"}
+            />
+            <label className="btn btn-outline-primary" htmlFor="btnradio2">
+              Expense
+            </label>
+
+            <input
+              type="radio"
+              className="btn-check"
+              name="btnradio"
+              id="btnradio3"
+              autoComplete="off"
+              value="transfer"
+              onChange={(e) => {
+                setType(e.target.value);
+              }}
+              checked={type === "transfer"}
+            />
+            <label className="btn btn-outline-primary" htmlFor="btnradio3">
+              Transfer
+            </label>
           </div>
-        </div>
-        {/* date */}
-        <div className=" form-group row">
-          <div className="col-6">
+          {/* category */}
+          <div className="form-group">
             <label
-              htmlFor="transac_date"
+              htmlFor="category"
               style={{ color: "grey", fontSize: "13px" }}
             >
-              Date
+              Category
             </label>
-            <input
-              type="date"
-              className="form-control"
-              name="transac_date"
-              value={date}
+            <select
+              name="category"
+              className="form-select"
+              value={category}
               onChange={(e) => {
-                setDate(e.target.value);
+                setCategory(e.target.value);
               }}
               required
-            />
+            >
+              {options.map((option, index) => (
+                <option key={index} value={option}>
+                  {option}
+                </option>
+              ))}
+            </select>
           </div>
-          {/* time */}
-          <div className="col-6">
+          {/* account */}
+          <div className="form-group">
             <label
-              htmlFor="transac_time"
+              htmlFor="account"
               style={{ color: "grey", fontSize: "13px" }}
             >
-              Time
+              Account
             </label>
-            <input
-              type="time"
-              className="form-control"
-              name="transac_time"
-              value={time}
+            <select
+              name="account"
+              className="form-select"
+              value={account}
               onChange={(e) => {
-                setTime(e.target.value);
+                setAccount(e.target.value);
               }}
               required
-            />
+            >
+              <option value="savings account">Savings Acc.</option>
+              <option value="cash">Cash</option>
+            </select>
           </div>
-        </div>
-        {/* note */}
-        <div className="from-group">
-          <label htmlFor="note" style={{ color: "grey", fontSize: "13px" }}>
-            Note
-          </label>
-          <textarea
-            name="note"
-            className="form-control"
-            onChange={(e) => {
-              setNote(e.target.value);
-            }}
-          ></textarea>
-        </div>
-      </form>
+          {/* amount */}
+          <div className="form-group">
+            <label htmlFor="amount" style={{ color: "grey", fontSize: "13px" }}>
+              Amount
+            </label>
+            <div className="d-flex align-items-center form-control">
+              <span>₹ </span>
+              <input
+                type="number"
+                className="border-0"
+                name="number"
+                value={amount}
+                placeholder="00.00"
+                autoFocus="autofocus"
+                step="any"
+                onChange={(e) => {
+                  setAmount(e.target.value);
+                }}
+                required
+              />
+            </div>
+          </div>
+          {/* date */}
+          <div className=" form-group row">
+            <div className="col-6">
+              <label
+                htmlFor="transac_date"
+                style={{ color: "grey", fontSize: "13px" }}
+              >
+                Date
+              </label>
+              <input
+                type="date"
+                className="form-control"
+                name="transac_date"
+                value={date}
+                onChange={(e) => {
+                  setDate(e.target.value);
+                }}
+                required
+              />
+            </div>
+            {/* time */}
+            <div className="col-6">
+              <label
+                htmlFor="transac_time"
+                style={{ color: "grey", fontSize: "13px" }}
+              >
+                Time
+              </label>
+              <input
+                type="time"
+                className="form-control"
+                name="transac_time"
+                value={time}
+                onChange={(e) => {
+                  setTime(e.target.value);
+                }}
+                required
+              />
+            </div>
+          </div>
+          {/* note */}
+          <div className="from-group">
+            <label htmlFor="note" style={{ color: "grey", fontSize: "13px" }}>
+              Note
+            </label>
+            <textarea
+              name="note"
+              className="form-control"
+              onChange={(e) => {
+                setNote(e.target.value);
+              }}
+            ></textarea>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

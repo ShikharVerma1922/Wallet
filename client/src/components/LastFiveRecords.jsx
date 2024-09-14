@@ -105,10 +105,11 @@ const LastFiveRecords = () => {
     <div
       style={{
         position: "relative",
-        margin: "10px",
+        // margin: "10px",
         padding: "10px",
         boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.4)",
         borderRadius: "5px",
+        // minWidth: "600px",
       }}
     >
       <h2>Last records overview</h2>

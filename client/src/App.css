@@ -164,13 +164,27 @@
   z-index: 900; /* Ensure it stays below the navbar */
 }
 
-.container-add {
+.add-record-overlay {
+  position: fixed;
   margin-top: 7vh;
-  /* background-color: #333333; */
-  /* color: white; */
-  max-width: 500px;
-  height: 93vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.3); /* Semi-transparent background */
+  backdrop-filter: blur(10px); /* Apply blur effect */
+  display: flex;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.add-record-container {
   padding: 30px;
+  display: flex;
+  justify-content: center;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
 }
 
 .recharts-wrapper *:focus {

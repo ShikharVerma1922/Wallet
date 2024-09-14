@@ -1,7 +1,7 @@
 import Balance from "./Balance";
 import LastFiveRecords from "./LastFiveRecords";
-import ExpensePieChart from "./statics/SpendingByCategories";
 import TotalExpensePiechart from "./TotalExpensePiechart";
+import "bootstrap/dist/css/bootstrap.css";
 
 const Home = () => {
   const data = [
@@ -13,10 +13,22 @@ const Home = () => {
   ];
 
   return (
-    <div style={{ position: "relative" }}>
-      <Balance />
-      <LastFiveRecords />
-      <TotalExpensePiechart />
+    <div style={{ position: "relative", padding: "5px" }}>
+      <div style={{ maxWidth: "600px" }}>
+        <Balance />
+      </div>
+
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-12 col-md-6 mb-1">
+            <LastFiveRecords />
+          </div>
+          <div className="col-12 col-md-6 mb-1">
+            <TotalExpensePiechart />
+          </div>
+        </div>
+      </div>
+
       <p style={{ textAlign: "center", color: "grey", marginTop: "20px" }}>
         Made with <span style={{ color: "#e25555" }}>♥</span> by Shikhar
       </p>

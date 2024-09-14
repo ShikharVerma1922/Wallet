@@ -35,16 +35,15 @@ const CategoryPieChart = ({ data }) => {
     <div
       style={{
         textAlign: "center",
-        margin: "10px",
-        maxWidth: "600px",
-        minHeight: "400px",
-        // width: "100%",
-        borderRadius: "5px",
-        boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.4)",
+        // margin: "10px",
+        // maxWidth: "600px",
+        // minHeight: "400px",
+        // // width: "100%",
+        // borderRadius: "5px",
+        // boxShadow: "0px 2px 8px rgba(0, 0, 0, 0.4)",
       }}
       className="d-flex flex-column justify-content-center align-items-center pt-4"
     >
-      <h3>Spending by Categories</h3>
       <PieChart
         width={chartWidth}
         height={chartHeight}
